@@ -1,0 +1,9 @@
+set autoindent
+set morespace
+set mouse
+set softwrap
+set tabstospaces
+set boldtext
+set smooth
+set constantshow
+set linenumbers
