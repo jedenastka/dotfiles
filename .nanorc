@@ -1,6 +1,6 @@
 set autoindent
 set morespace
-unset mouse
+# set mouse
 set softwrap
 set tabstospaces
 set boldtext
