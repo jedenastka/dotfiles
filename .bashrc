@@ -117,3 +117,6 @@ fi
 if [ -f ~/.bashrc-local ]; then
     . ~/.bashrc-local
 fi
+
+# export favorite editor
+export EDITOR=nano
