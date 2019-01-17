@@ -1,13 +1,14 @@
+# fun
 alias fortunecow='fortune | cowsay'
 alias rainbow='yes xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | lolcat'
-alias inxii='inxi -Fx' 
 alias tuxsay='cowsay -f tux'
-alias clock='while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done &'
-alias dotnano='nano $1 && . $1'
-alias strpwd='read -s pass; echo $pass | md5sum | base64 | cut -c -16'
-alias wgetsite='wget --random-wait -r -p -e robots=off -U mozilla'
-alias manfred='cmatrix -b -a -u 6 -C green'
-alias morten='cmatrix -b -a -u 6 -C red'
+
+# dotfile sync
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias bg='$1 > /dev/null 2>/dev/null &'
+
+# other
+alias inxii='inxi -Fx' 
+alias nano.='nano $1 ; . $1'
+alias wgetsite='wget --random-wait -r -p -e robots=off -U mozilla'
 alias open='xdg-open'
+alias ls.='ls -d .*'
