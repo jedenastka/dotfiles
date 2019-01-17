@@ -16,5 +16,5 @@ echo
 
 neofetch
 
-fortune -s riddles computer debian-hints
+fortune -s
 echo
