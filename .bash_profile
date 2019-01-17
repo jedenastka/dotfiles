@@ -11,8 +11,10 @@ mesg n
 #     inxi -IpRS -v0 -c5
 # fi
 
+echo "Hello $USER!"
+echo
+
 neofetch
 
-echo
-echo "Have a nice day!"
+fortune -s riddles computer debian-hints
 echo
