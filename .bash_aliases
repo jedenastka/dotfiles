@@ -2,9 +2,13 @@
 alias fortunecow='fortune | cowsay'
 alias rainbow='yes xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | lolcat'
 alias tuxsay='cowsay -f tux'
+alias cmatrix='cmatrix -b'
 
 # dotfile sync
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+# command overriders
+alias zip='zip -9'
 
 # other
 alias inxii='inxi -Fx' 
