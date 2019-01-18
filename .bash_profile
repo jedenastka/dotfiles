@@ -11,6 +11,7 @@ mesg n
 #     inxi -IpRS -v0 -c5
 # fi
 
+echo
 echo "Hello $USER!"
 echo
 
