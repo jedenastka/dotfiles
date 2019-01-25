@@ -11,10 +11,19 @@ alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias zip='zip -9'
 alias gzip='gzip -9'
 alias bzip2='bzip2 -9'
+alias apt='aptitude'
+alias mkdir='mkdir -pv'
+
+# sudo
+alias shutdown='sudo shutdown'
+alias reboot='sudo reboot'
 
 # other
 alias inxii='inxi -Fx' 
 alias nano.='nano $1 ; . $1'
 alias wgetsite='wget --html-extnsion -r --convert-links --pag-requisites --no-parent'
 alias open='xdg-open'
-alias ls.='ls -d .*'
+alias l.='ls -d .*'
+alias cd..='cd ..'
+alias cls='clear'
+alias ..='cd ..'
