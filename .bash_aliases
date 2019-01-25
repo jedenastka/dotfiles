@@ -17,13 +17,15 @@ alias mkdir='mkdir -pv'
 # sudo
 alias shutdown='sudo shutdown'
 alias reboot='sudo reboot'
+alias snano='sudo nano'
 
 # other
 alias inxii='inxi -Fx' 
-alias nano.='nano $1 ; . $1'
+# alias nano.='nano $1 ; . $1'
 alias wgetsite='wget --html-extnsion -r --convert-links --pag-requisites --no-parent'
 alias open='xdg-open'
 alias l.='ls -d .*'
 alias cd..='cd ..'
 alias cls='clear'
 alias ..='cd ..'
+alias edit='nano'
