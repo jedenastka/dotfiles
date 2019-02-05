@@ -3,3 +3,5 @@
 if [ -f ~/.xsessionrc-local ]; then
     . ~/.xsessionrc-local
 fi
+
+xbindkeys

@@ -5,3 +5,5 @@
 #	email = grzesiek.jedenastka@outlook.com
 [user]
 	email = grzesiek.jedenastka@outlook.com
+[guitool "Pull"]
+	cmd = git pull

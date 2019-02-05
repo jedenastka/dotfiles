@@ -1,0 +1,62 @@
+# fun
+alias fortunecow='fortune | cowsay'
+alias rainbow='yes xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | lolcat'
+alias tuxsay='cowsay -f tux'
+alias cmatrix='cmatrix -b'
+
+# dotfile sync
+alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+# command overriders
+alias zip='zip -9'
+alias gzip='gzip -9'
+alias bzip2='bzip2 -9'
+alias apt='aptitude'
+alias mkdir='mkdir -pv'
+alias edit='nano'
+alias pg='less'
+alias wget='wget -c'
+
+# trash
+alias rrm='/bin/rm'
+alias rm='trash'
+alias lstrash='trash-list'
+alias emptrash='trash-empty'
+alias rmtrash='trash-rm'
+alias restrash='restore-trash'
+
+# sudo
+alias sudo='sudo '
+alias shutdown='sudo shutdown'
+alias reboot='sudo reboot'
+alias snano='sudo nano'
+alias ifconfig='sudo ifconfig'
+
+# colors
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# ls
+alias ls='ls --color=auto -F'
+alias ll='ls -l -H'
+alias lla='ll -A'
+alias la='ls -A'
+alias l='ls'
+alias l.='ls -d .*'
+
+# cd
+alias ..='cd ..'
+alias cd..='cd ..'
+
+# other
+alias inxii='inxi -Fx' 
+alias wgetsite='wget --html-extension -r --convert-links --page-requisites --no-parent'
+alias open='xdg-open'
+alias cls='clear'
+alias now='date +"%T"'
+alias nowtime='now'
+alias nowdate='date +"%d-%m-%Y"'
+alias upgrade='sudo aptitude update && sudo aptitude upgrade'
