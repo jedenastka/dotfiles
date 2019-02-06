@@ -18,8 +18,10 @@ alias pg='less'
 alias wget='wget -c'
 
 # trash
-alias rrm='/bin/rm'
-alias rm='trash'
+if [ -x /usr/bin/trash ]; then
+    alias rrm='/bin/rm'
+    alias rm='trash'
+fi
 alias lstrash='trash-list'
 alias emptrash='trash-empty'
 alias rmtrash='trash-rm'
