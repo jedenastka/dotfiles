@@ -16,3 +16,4 @@ Not all of things contained here is mine.
     Is based (not 1:1) on gnugnat's one.
 - zsh-autosuggestions (https://github.com/zsh-users/zsh-autosuggestions)
 - zsh-syntax-highlighting (https://github.com/zsh-users/zsh-syntax-highlighting)
+- git-prompt.sh (https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh)
