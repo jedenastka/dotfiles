@@ -7,3 +7,5 @@
 	email = grzesiek.jedenastka@outlook.com
 [guitool "Pull"]
 	cmd = git pull
+[color]
+	ui = auto
