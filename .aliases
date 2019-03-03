@@ -62,6 +62,7 @@ alias now='date +"%T"'
 alias nowtime='now'
 alias nowdate='date +"%d-%m-%Y"'
 alias upgrade='sudo aptitude update && sudo aptitude upgrade'
+alias neo='neofetch'
 
 extract () {
   if [ -f $1 ] ; then
