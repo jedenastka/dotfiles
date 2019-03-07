@@ -64,6 +64,7 @@ alias nowdate='date +"%d-%m-%Y"'
 alias upgrade='sudo aptitude update && sudo aptitude upgrade'
 alias neo='neofetch'
 alias ddos='ping'
+alias wttr='curl wttr.in'
 
 extract () {
   if [ -f $1 ] ; then
