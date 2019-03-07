@@ -1,0 +1,4 @@
+echo "Hello $USER!"
+echo
+neofetch
+fortune -s 
