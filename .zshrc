@@ -88,9 +88,6 @@ fi
 # Colored GCC warnings and errors.
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# Favourite editor
-export EDITOR='vim'
-
 # Alias definitions in separate file.
 if [ -f ~/.aliases ]; then
     source ~/.aliases
