@@ -1,41 +1,61 @@
 # fun
+
 alias fortunecow='fortune | cowsay'
 alias rainbow='yes xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | lolcat'
 alias tuxsay='cowsay -f tux'
-alias cmatrix='cmatrix -b'
+alias ddos='ping'
 
-# dotfile sync
+# dotfiles sync
+
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-# command overriders
+# compression
+
 alias zip='zip -9'
 alias gzip='gzip -9'
 alias bzip2='bzip2 -9'
-alias apt='aptitude'
+
+# apt
+
+if [ -x /usr/bin/aptitude ]; then
+    alias aptitude='sudo aptitude'
+    alias apt='aptitude'
+fi
+
+# overriders
 alias mkdir='mkdir -pv'
-alias edit='nano'
 alias pg='less'
 alias wget='wget -c'
 
 # trash
+
 if [ -x /usr/bin/trash ]; then
     alias rrm='/bin/rm'
     alias rm='trash'
+    alias lstrash='trash-list'
+    alias emptrash='trash-empty'
+    alias rmtrash='trash-rm'
+    alias restore='restore-trash'
 fi
-alias lstrash='trash-list'
-alias emptrash='trash-empty'
-alias rmtrash='trash-rm'
-alias restrash='restore-trash'
 
 # sudo
+
 alias sudo='sudo '
 alias shutdown='sudo shutdown'
 alias reboot='sudo reboot'
-alias snano='sudo nano'
 alias ifconfig='sudo ifconfig'
-alias apt='sudo apt'
+alias poweroff='sudo poweroff'
+
+# editing
+
+export EDITOR='vim'
+alias snano='sudo nano'
+alias svim='sudo vim'
+alias edit="$EDITOR"
+alias sedit='sudo edit'
 
 # colors
+
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 alias grep='grep --color=auto'
@@ -43,6 +63,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # ls
+
 alias ls='ls --color=auto -F'
 alias ll='ls -l -H'
 alias lla='ll -A'
@@ -51,39 +72,26 @@ alias l='ls'
 alias l.='ls -d .*'
 
 # cd
+
 alias ..='cd ..'
 alias cd..='cd ..'
+alias ~='cd ~'
 
-# other
-alias inxii='inxi -Fx' 
-alias wgetsite='wget --html-extension -r --convert-links --page-requisites --no-parent'
+# shortcuts
+
 alias open='xdg-open'
 alias cls='clear'
+alias neo='neofetch'
+alias fetch='neofetch'
+alias ytdl='youtube-dl'
+
+# other
+
+alias inxii='inxi -Fx' 
+alias wgetsite='wget --html-extension -r --convert-links --page-requisites --no-parent'
 alias now='date +"%T"'
 alias nowtime='now'
 alias nowdate='date +"%d-%m-%Y"'
 alias upgrade='sudo aptitude update && sudo aptitude upgrade'
-alias neo='neofetch'
-alias ddos='ping'
 alias wttr='curl wttr.in'
-alias ytdl='youtube-dl'
-
-extract () {
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)  tar xjf $1    ;;
-      *.tar.gz) tar xzf $1    ;;
-      *.bz2)    bunzip2 $1    ;;
-      *.rar)    rar x $1    ;;
-      *.gz)   gunzip $1   ;;
-      *.tar)    tar xf $1   ;;
-      *.tbz2)   tar xjf $1    ;;
-      *.tgz)    tar xzf $1    ;;
-      *.zip)    unzip $1    ;;
-      *.Z)    uncompress $1 ;;
-      *)      echo "'$1' cannot be extracted via extract()" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
-}
+alias net='nmtui'
