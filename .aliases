@@ -33,6 +33,7 @@ alias shutdown='sudo shutdown'
 alias reboot='sudo reboot'
 alias snano='sudo nano'
 alias ifconfig='sudo ifconfig'
+alias apt='sudo apt'
 
 # colors
 alias dir='dir --color=auto'
