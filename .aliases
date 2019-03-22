@@ -65,6 +65,7 @@ alias upgrade='sudo aptitude update && sudo aptitude upgrade'
 alias neo='neofetch'
 alias ddos='ping'
 alias wttr='curl wttr.in'
+alias ytdl='youtube-dl'
 
 extract () {
   if [ -f $1 ] ; then
