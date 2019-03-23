@@ -84,6 +84,7 @@ alias cls='clear'
 alias neo='neofetch'
 alias fetch='neofetch'
 alias ytdl='youtube-dl'
+alias sysctl='systemctl'
 
 # other
 
