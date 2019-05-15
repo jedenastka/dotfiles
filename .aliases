@@ -1,13 +1,7 @@
-# fun
-
-alias fortunecow='fortune | cowsay'
-alias rainbow='yes xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | lolcat'
-alias tuxsay='cowsay -f tux'
-alias ddos='ping'
-
-# dotfiles sync
+# dotfiles synchronization
 
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dot='dotfiles'
 
 # compression
 
@@ -15,22 +9,33 @@ alias zip='zip -9'
 alias gzip='gzip -9'
 alias bzip2='bzip2 -9'
 
-# apt
+# apt and aptitude
 
 if [ -x /usr/bin/aptitude ]; then
-    alias aptitude='sudo aptitude'
-    alias apt='aptitude'
+    alias apti='aptitude'
+    alias sapti='sudo aptitude'
+    alias aptupd='sudo aptitude update'
+    alias aptupg='sudo aptitude upgrade'
+    alias aptfupg='sudo aptitude full-upgrade'
+    alias aptins='sudo aptitude install'
+    alias aptsea='aptitude search'
+    alias aptlst='sudo apt edit-sources'
 fi
 
-# overriders
-alias mkdir='mkdir -pv'
-alias pg='less'
-alias wget='wget -c'
+# shorthands
+
+alias c='cd'
+alias open='xdg-open'
+alias cls='clear'
+alias neo='neofetch'
+alias fetch='neofetch'
+alias ytdl='youtube-dl'
+alias sctl='systemctl'
 
 # trash
 
 if [ -x /usr/bin/trash ]; then
-    alias rrm='/bin/rm'
+    alias frm='\rm'
     alias rm='trash'
     alias lstrash='trash-list'
     alias emptrash='trash-empty'
@@ -48,9 +53,14 @@ alias poweroff='sudo poweroff'
 
 # editing
 
-export EDITOR='vim'
+# nano
 alias snano='sudo nano'
+# vim
 alias svim='sudo vim'
+# vscodium
+alias codium='vscodium'
+alias vsc='vscodium'
+# default edit
 alias edit="$EDITOR"
 alias sedit='sudo edit'
 
@@ -73,29 +83,21 @@ alias l.='ls -d .*'
 
 # cd
 
-alias ..='cd ..'
 alias cd..='cd ..'
 alias ~='cd ~'
 
-# shortcuts
-
-alias open='xdg-open'
-alias cls='clear'
-alias neo='neofetch'
-alias fetch='neofetch'
-alias ytdl='youtube-dl'
-alias sysctl='systemctl'
+# overriders
+alias mkdir='mkdir -p'
+alias pg='less'
+alias wget='wget -c'
 
 # other
 
 alias inxii='inxi -Fx' 
 alias wgetsite='wget --html-extension -r --convert-links --page-requisites --no-parent'
 alias now='date +"%T"'
-alias nowtime='now'
 alias nowdate='date +"%d-%m-%Y"'
-alias upgrade='sudo aptitude update && sudo aptitude upgrade'
 alias wttr='curl wttr.in'
 alias net='nmtui'
 alias new='touch'
 alias testnet='ping -c 5 google.pl'
-alias dot='dotfiles'
