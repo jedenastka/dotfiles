@@ -63,9 +63,6 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '\C-x\C-e' edit-command-line
 
-# Editor.
-EDITOR=nano
-
 # Change the window title of xterm.
 case $TERM in
     xterm*)
@@ -85,21 +82,13 @@ else
     . "$ZSHDIR/11hardX.zsh-theme"
 fi
 
-# Colored GCC warnings and errors.
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# Alias definitions in separate file.
-if [ -f ~/.aliases ]; then
-    source ~/.aliases
-fi
-
-# Enable .shellrc-local, file that I use for only one machine and it's not synced.
-if [ -f ~/.shellrc-local ]; then
-    source ~/.shellrc-local
-fi
-
 # zsh-autosuggestions
 . $ZSHDIR/zsh-autosuggestions.zsh
 
 # Syntax highlighting
 . $ZSHDIR/highlighting/zsh-syntax-highlighting.zsh
+
+# Enable .shellrc, file to use wih most popular shells to not duplicate code
+if [ -f ~/.shellrc ]; then
+    source ~/.shellrc
+fi
