@@ -20,6 +20,8 @@ if [ -x /usr/bin/aptitude ]; then
     alias aptins='sudo aptitude install'
     alias aptsea='aptitude search'
     alias aptlst='sudo apt edit-sources'
+    alias aptrm='sudo aptitude remove'
+    alias aptprg='sudo aptitude purge'
 fi
 
 # shorthands
