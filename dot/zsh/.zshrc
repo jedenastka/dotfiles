@@ -89,7 +89,6 @@ fi
 . $ZSHDIR/highlighting/zsh-syntax-highlighting.zsh
 
 # Code::Stats
-CODESTATS_API_KEY="SFMyNTY.UjNKNlpYTnBaV3N4TVE9PSMjTnpBNE1BPT0.W4sgIYvRpnFx29-P04seduc8j3iWe-iPeHVBEPZjNoo"
 source ~/.zsh.d/codestats.zsh
 
 # Enable .shellrc, file to use wih most popular shells to not duplicate code
