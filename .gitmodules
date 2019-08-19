@@ -1,0 +1,9 @@
+[submodule "dot/zsh/.zsh.d/zsh-autosuggestions"]
+	path = dot/zsh/.zsh.d/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "dot/zsh/.zsh.d/zsh-codestats"]
+	path = dot/zsh/.zsh.d/zsh-codestats
+	url = https://github.com/dancek/zsh-codestats
+[submodule "dot/zsh/.zsh.d/zsh-syntax-highlighting"]
+	path = dot/zsh/.zsh.d/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
