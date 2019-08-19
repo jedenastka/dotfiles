@@ -6,6 +6,11 @@ case $- in
       *) return;;
 esac
 
+# Enable .shellrc, file to use wih most popular shells to not duplicate code
+if [ -f ~/.shellrc ]; then
+    source ~/.shellrc
+fi
+
 # History file
 # don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
@@ -64,9 +69,4 @@ if ! shopt -oq posix; then
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
-fi
-
-# Enable .shellrc, file to use wih most popular shells to not duplicate code
-if [ -f ~/.shellrc ]; then
-    source ~/.shellrc
 fi

@@ -1,5 +1,10 @@
 #!/bin/zsh
 
+# Enable .shellrc, file to use wih most popular shells to not duplicate code
+if [ -f ~/.shellrc ]; then
+    source ~/.shellrc
+fi
+
 ZSHDIR="$HOME/.zsh.d"
 if [[ ! -x $ZSHDIR ]]; then;
     echo "Warning! no $ZSHDIR found!";
@@ -90,8 +95,3 @@ fi
 
 # Code::Stats
 source ~/.zsh.d/codestats.zsh
-
-# Enable .shellrc, file to use wih most popular shells to not duplicate code
-if [ -f ~/.shellrc ]; then
-    source ~/.shellrc
-fi
