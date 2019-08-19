@@ -1,9 +1,0 @@
-# add local shell profile
-if [ -f ~/.shell-profile-local ]; then
-    source ~/.shell-profile-local
-fi
-
-echo "Hello $USER!"
-echo
-neofetch
-fortune -s 
