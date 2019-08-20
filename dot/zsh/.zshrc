@@ -55,16 +55,19 @@ setopt hist_ignore_space
 setopt share_history
 
 # Keybindings
+
 ## C-left and C-right to move cursor by word.
 bindkey "\e[1;5D" backward-word
 bindkey "\e[1;5C" forward-word
 
 # Command editor
+
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '\C-x\C-e' edit-command-line
 
 # Miscellaneous
+
 ## Type directory name to enter it.
 setopt autocd
 ## Use color in shell.
@@ -76,6 +79,7 @@ case $TERM in
 esac
 
 # Extensions
+
 ## zsh-autosuggestions
 . $ZSHDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 ## zsh-syntax-highlighting
