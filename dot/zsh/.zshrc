@@ -1,97 +1,84 @@
 #!/bin/zsh
 
-# Enable .shellrc, file to use wih most popular shells to not duplicate code
+## Enable .shellrc, file to use wih most popular shells to not duplicate code.
 if [ -f ~/.shellrc ]; then
     source ~/.shellrc
 fi
 
+# ZSHDIR
+
+## Set ZSHDIR.
 ZSHDIR="$HOME/.zsh.d"
+## Display warning, if not found.
 if [[ ! -x $ZSHDIR ]]; then;
     echo "Warning! no $ZSHDIR found!";
 fi
 
-# Completion.
+# Tab-completion
+
+## Initialize.
 autoload -Uz compinit
 compinit
-
-zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' format 'Completing %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' menu select=long
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' verbose true
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-# Advanced tab-completion.
-zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
-zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
+## Open tab-completion menu instead of just showing all items.
 zstyle ':completion:*' menu select
 
-# Correction.
+# Autocorrection
+
+## Enable autocorrection
 setopt correctall
 
-# Prompt init.
+# Prompt
+
+## Initialize.
 autoload -U promptinit
 promptinit
+## Theming.
+if [[ -z $DISPLAY ]]; then
+    # Basic bash prompt if in TTY.
+    source "$ZSHDIR/prompts/bash.zsh"
+else
+    # And more advanced xterm prompt.
+    source "$ZSHDIR/prompts/hardX-11.zsh"
+fi
 
-# History.
+# History
+
+## Enable history.
 HISTFILE=$HOME/.zsh_history
-HISTSIZE=999999
+## Set line limit to maximum.
+HISTSIZE=1000000
 SAVEHIST=$HISTSIZE
-# ignore duplicates
+## Ignore duplicates and empty commands to save space.
 setopt hist_ignore_all_dups
-# ignore space
 setopt hist_ignore_space
-# save immediatelly
+# Save immediatelly after entering command.
 setopt share_history
 
-# Keybindings.
-# ctrl-left and ctrl-right
+# Keybindings
+## C-left and C-right to move cursor by word.
 bindkey "\e[1;5D" backward-word
 bindkey "\e[1;5C" forward-word
 
-# Miscellaneous settings.
-setopt autocd
-setopt extendedglob
-use_color=true
-
-# Command Editor.
+# Command editor
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '\C-x\C-e' edit-command-line
 
-# Change the window title of xterm.
+# Miscellaneous
+## Type directory name to enter it.
+setopt autocd
+## Use color in shell.
+use_color=true
+## Change the window title of xterm.
 case $TERM in
     xterm*)
         precmd () {print -Pn "\e]0;${USER}@${HOST}:${PWD/#$HOME/\~}\a"};;
 esac
 
-# Theming.
-# git prompt
-setopt PROMPT_SUBST
-. $ZSHDIR/git-prompt.sh
-# source themes
-if [[ -z $DISPLAY ]]; then
-    # tty
-   . "$ZSHDIR/prompts/bash.zsh"
-else
-    # xterm
-    . "$ZSHDIR/prompts/hardX-11.zsh"
-fi
-
-# zsh-autosuggestions
+# Extensions
+## zsh-autosuggestions
 . $ZSHDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# Syntax highlighting
+## zsh-syntax-highlighting
 . $ZSHDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Code::Stats
+## Code::Stats
 source ~/.zsh.d/zsh-codestats/codestats.zsh
