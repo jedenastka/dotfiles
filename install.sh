@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "Installing dotfiles in $HOME..."
 echo "Any old dotfiles will be moved to $PWD/dotfiles.old."
