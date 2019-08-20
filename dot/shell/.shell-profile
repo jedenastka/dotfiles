@@ -1,4 +1,4 @@
-# add local shell profile
+# Enable .shell-profile-local, file that I use per machine and it's not synced.
 if [ -f ~/.shell-profile-local ]; then
     source ~/.shell-profile-local
 fi

@@ -1,8 +1,3 @@
-# dotfiles synchronization
-
-alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias dot='dotfiles'
-
 # compression
 
 alias zip='zip -9'
