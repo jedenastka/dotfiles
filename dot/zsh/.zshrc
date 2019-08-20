@@ -81,17 +81,17 @@ setopt PROMPT_SUBST
 # source themes
 if [[ -z $DISPLAY ]]; then
     # tty
-   . "$ZSHDIR/bash.zsh-theme"
+   . "$ZSHDIR/prompts/bash.zsh"
 else
     # xterm
-    . "$ZSHDIR/11hardX.zsh-theme"
+    . "$ZSHDIR/prompts/hardX-11.zsh"
 fi
 
 # zsh-autosuggestions
-. $ZSHDIR/zsh-autosuggestions.zsh
+. $ZSHDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Syntax highlighting
-. $ZSHDIR/highlighting/zsh-syntax-highlighting.zsh
+. $ZSHDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Code::Stats
-source ~/.zsh.d/codestats.zsh
+source ~/.zsh.d/zsh-codestats/codestats.zsh
