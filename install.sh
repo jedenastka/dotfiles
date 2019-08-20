@@ -19,3 +19,11 @@ done
 echo "Done!"
 
 echo "Creating local configs..."
+
+LOCAL_FILES=(~/.shellrc-local ~/.xsessionrc-local ~/.shell-profile-local)
+for FILE in ${LOCAL_FILES[*]}; do
+    echo "Creating '$FILE'..."
+    touch $FILE
+done
+
+echo "Done!"
