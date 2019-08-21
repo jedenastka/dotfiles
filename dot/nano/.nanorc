@@ -11,13 +11,22 @@
 # Licensed under GNU GPL v3.0.
 # https://gitlab.com/grzesiek11/dotfiles
 
+# Autoindent.
 set autoindent
+# Remove unnecessary elements to give more space to text. 
 set morespace
+# Enable mouse.
 #set mouse
+# Wrap text to next line if is too long to display.
 set softwrap
+# Convert tabs to 4 spaces.
 set tabstospaces
 set tabsize 4
+# Use bold text instead of black on white.
 set boldtext
+# Smooth scrolling.
 set smooth
+# Show some info on bottom.
 set constantshow
+# Line numbers.
 set linenumbers
