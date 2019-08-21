@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if [ -x /usr/bin/stow ]; then
+    echo "Stow exists. Everything OK."
+else
+    echo "Stow is missing! Install stow and continue."
+    exit
+fi
+
 echo "Installing dotfiles in $HOME..."
 echo "Any old dotfiles will be moved to $PWD/dotfiles.old."
 
