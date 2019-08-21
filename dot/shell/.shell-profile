@@ -1,3 +1,16 @@
+#          ▗▖        ▗▄▖  ▗▄▖                        ▄▄   █  ▗▄▖       
+#          ▐▌        ▝▜▌  ▝▜▌                       ▐▛▀   ▀  ▝▜▌       
+#     ▗▟██▖▐▙██▖ ▟█▙  ▐▌   ▐▌       ▐▙█▙  █▟█▌ ▟█▙ ▐███  ██   ▐▌   ▟█▙ 
+#     ▐▙▄▖▘▐▛ ▐▌▐▙▄▟▌ ▐▌   ▐▌       ▐▛ ▜▌ █▘  ▐▛ ▜▌ ▐▌    █   ▐▌  ▐▙▄▟▌
+#      ▀▀█▖▐▌ ▐▌▐▛▀▀▘ ▐▌   ▐▌   ██▌ ▐▌ ▐▌ █   ▐▌ ▐▌ ▐▌    █   ▐▌  ▐▛▀▀▘
+#  █  ▐▄▄▟▌▐▌ ▐▌▝█▄▄▌ ▐▙▄  ▐▙▄      ▐█▄█▘ █   ▝█▄█▘ ▐▌  ▗▄█▄▖ ▐▙▄ ▝█▄▄▌
+#  ▀   ▀▀▀ ▝▘ ▝▘ ▝▀▀   ▀▀   ▀▀      ▐▌▀▘  ▀    ▝▀▘  ▝▘  ▝▀▀▀▘  ▀▀  ▝▀▀ 
+#                                   ▐▌                                 
+#
+# (C) Grzesiek11 2019
+# Licensed under GNU GPL v3.0.
+# https://gitlab.com/grzesiek11/dotfiles
+
 # Enable .shell-profile-local, file that I use per machine and it's not synced.
 if [ -f ~/.shell-profile-local ]; then
     source ~/.shell-profile-local

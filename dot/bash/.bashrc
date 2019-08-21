@@ -1,5 +1,18 @@
 #!/bin/bash
 
+#     ▗▖             ▗▖             
+#     ▐▌             ▐▌             
+#     ▐▙█▙  ▟██▖▗▟██▖▐▙██▖ █▟█▌ ▟██▖
+#     ▐▛ ▜▌ ▘▄▟▌▐▙▄▖▘▐▛ ▐▌ █▘  ▐▛  ▘
+#     ▐▌ ▐▌▗█▀▜▌ ▀▀█▖▐▌ ▐▌ █   ▐▌   
+#  █  ▐█▄█▘▐▙▄█▌▐▄▄▟▌▐▌ ▐▌ █   ▝█▄▄▌
+#  ▀  ▝▘▀▘  ▀▀▝▘ ▀▀▀ ▝▘ ▝▘ ▀    ▝▀▀ 
+#                                   
+#                                   
+# (C) Grzesiek11 2019
+# Licensed under GNU GPL v3.0.
+# https://gitlab.com/grzesiek11/dotfiles
+
 # If not running interactively, don't do anything.
 case $- in
     *i*) ;;

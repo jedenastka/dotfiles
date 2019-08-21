@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# (C) Grzesiek11 2019
+# Licensed under GNU GPL v3.0.
+# https://gitlab.com/grzesiek11/dotfiles
+
 if [ -x /usr/bin/stow ]; then
     echo "Stow exists. Everything OK."
 else
