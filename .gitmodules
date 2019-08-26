@@ -7,3 +7,6 @@
 [submodule "dot/zsh/.zsh.d/zsh-syntax-highlighting"]
 	path = dot/zsh/.zsh.d/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "dot/vim/.vim/bundle/code-stats-vim"]
+	path = dot/vim/.vim/bundle/code-stats-vim
+	url = https://gitlab.com/code-stats/code-stats-vim.git
