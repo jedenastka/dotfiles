@@ -31,7 +31,7 @@ echo "Done!"
 
 echo "Creating local configs..."
 
-LOCAL_FILES=(~/.shellrc-local ~/.xsessionrc-local ~/.shell-profile-local)
+LOCAL_FILES=(~/.shellrc-local ~/.xsessionrc-local ~/.shell-profile-local ~/.vim/vimrc-local)
 for FILE in ${LOCAL_FILES[*]}; do
     echo "Creating '$FILE'..."
     touch $FILE
