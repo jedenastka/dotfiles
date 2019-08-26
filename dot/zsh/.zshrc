@@ -90,7 +90,7 @@ case $TERM in
     xterm*)
         precmd () {print -Pn "\e]0;${USER}@${HOST}:${PWD/#$HOME/\~}\a"};;
 esac
-## Allow for code execution in prompts
+## Allow for code execution in prompts.
 setopt prompt_subst
 
 # Extensions
