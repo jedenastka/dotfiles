@@ -16,3 +16,7 @@
 if [ -f ~/.shell-profile ]; then
     . ~/.shell-profile
 fi
+
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi
