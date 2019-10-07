@@ -4,7 +4,7 @@
 # Licensed under GNU GPL v3.0.
 # https://gitlab.com/grzesiek11/dotfiles
 
-if [ -x /usr/bin/stow ]; then
+if command -v stow >/dev/null 2>&1; then
     echo "Stow exists. Everything OK."
 else
     echo "Stow is missing! Install stow and continue."
