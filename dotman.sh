@@ -4,7 +4,7 @@
 # Licensed under GNU GPL v3.0.
 # https://gitlab.com/grzesiek11/dotfiles
 
-echo "DotfilesManager v2.0"
+echo "DotfilesManager v2.1"
 echo "(C) Grzesiek11 2019"
 echo "Licensed under GNU GPL v3.0."
 echo
@@ -63,7 +63,11 @@ dotInstall
 }
 
 helpMsg() {
-notImplemented
+echo "Help:"
+echo "install - Installs dotfiles."
+echo "uninstall - Removes dotfiles."
+echo "reinstall - Removes, and then installs dotfiles."
+echo "help - Shows this message"
 }
 
 if [ -z "$1" ]; then
