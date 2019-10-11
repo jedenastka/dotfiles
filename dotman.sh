@@ -7,7 +7,7 @@
 installPath=$HOME
 oldPath=$PWD/dotfiles.old
 
-echo "DotfilesManager v2.1"
+echo "DotfilesManager v2.2"
 echo "(C) Grzesiek11 2019"
 echo "Licensed under GNU GPL v3.0."
 echo
