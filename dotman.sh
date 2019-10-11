@@ -4,13 +4,26 @@
 # Licensed under GNU GPL v3.0.
 # https://gitlab.com/grzesiek11/dotfiles
 
+echo "DotfilesManager v2.0"
+echo "(C) Grzesiek11 2019"
+echo "Licensed under GNU GPL v3.0."
+echo
+
+notImplemented() {
+echo "This function is not implemented yet."
+}
+
+checkStow() {
 if command -v stow >/dev/null 2>&1; then
     echo "Stow exists. Everything OK."
 else
     echo "Stow is missing! Install stow and continue."
     exit
 fi
+}
 
+dotInstall() {
+checkStow
 echo "Installing dotfiles in $HOME..."
 echo "Any old dotfiles will be moved to $PWD/dotfiles.old."
 
@@ -38,3 +51,32 @@ for FILE in ${LOCAL_FILES[*]}; do
 done
 
 echo "Done!"
+}
+
+dotUninstall() {
+notImplemented
+}
+
+dotReinstall() {
+dotUninstall
+dotInstall
+}
+
+helpMsg() {
+notImplemented
+}
+
+if [ -z "$1" ]; then
+    echo "No parameter entered. Try 'help'." 
+elif [ "$1" = "help" ]; then
+    helpMsg
+elif [ "$1" = "install" ]; then
+    dotInstall
+elif [ "$1" = "uninstall" ]; then
+    dotUninstall
+elif [ "$1" = "uninstall" ]; then
+    dotReinstall
+else
+    echo "There is no '$1' parameter. Try 'help'."
+fi
+exit
