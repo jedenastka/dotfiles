@@ -4,6 +4,9 @@
 # Licensed under GNU GPL v3.0.
 # https://gitlab.com/grzesiek11/dotfiles
 
+installPath=$HOME
+oldPath=$PWD/dotfiles.old
+
 echo "DotfilesManager v2.1"
 echo "(C) Grzesiek11 2019"
 echo "Licensed under GNU GPL v3.0."
@@ -22,19 +25,23 @@ else
 fi
 }
 
+#dotBaseLoop() {
+#
+#}
+
 dotInstall() {
 checkStow
-echo "Installing dotfiles in $HOME..."
-echo "Any old dotfiles will be moved to $PWD/dotfiles.old."
+echo "Installing dotfiles in '$installPath'..."
+echo "Any old dotfiles will be moved to '$oldPath'."
 
 for package in $(ls dot); do
-    echo "Stowing $package..."
+    echo "Installing $package..."
     while [ true ]; do
-        conflicts=$(stow -R -t $HOME -d dot $package 2>&1 | awk '/\* existing target is/ {print $NF}')
+        conflicts=$(stow -S -t $installPath -d dot $package 2>&1 | awk '/\* existing target is/ {print $NF}')
         for conflict in $conflicts; do
             echo "Detected conflict: $conflict exists."
-            mkdir -p dotfiles.old
-            mv $HOME/$conflict dotfiles.old
+            mkdir -p $oldPath
+            mv $installPath/$conflict $oldPath
         done
         [ -z "$conflicts" ] && break
     done
@@ -44,17 +51,25 @@ echo "Done!"
 
 echo "Creating local configs..."
 
-LOCAL_FILES=(~/.shellrc-local ~/.xsessionrc-local ~/.shell-profile-local ~/.vim/vimrc-local)
-for FILE in ${LOCAL_FILES[*]}; do
-    echo "Creating '$FILE'..."
-    touch $FILE
+localFiles=(~/.shellrc-local ~/.xsessionrc-local ~/.shell-profile-local ~/.vim/vimrc-local)
+for file in ${localFiles[*]}; do
+    echo "Creating '$file'..."
+    touch $file
 done
 
 echo "Done!"
 }
 
 dotUninstall() {
-notImplemented
+checkStow
+
+echo "Uninstalling dotfiles from '$installPath'..."
+for package in $(ls dot); do
+    echo "Uninstalling $package..."
+    stow -D -t $installPath -d dot $package 2>&1 > /dev/null
+done
+
+echo "Done."
 }
 
 dotReinstall() {
