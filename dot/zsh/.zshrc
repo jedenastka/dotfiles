@@ -46,13 +46,14 @@ setopt correctall
 autoload -U promptinit
 promptinit
 ## Theming.
-if [[ -z $DISPLAY ]]; then
-    # Basic bash prompt if in TTY.
-    source "$ZSHDIR/prompts/bash.zsh"
-else
-    # And more advanced xterm prompt.
-    source "$ZSHDIR/prompts/hardX-11.zsh"
-fi
+#if [[ -z $DISPLAY ]]; then
+#    # Basic bash prompt if in TTY.
+#    source "$ZSHDIR/prompts/bash.zsh"
+#else
+#    # And more advanced xterm prompt.
+#    source "$ZSHDIR/prompts/hardX-11.zsh"
+#fi
+source "$ZSHDIR/prompts/simple.zsh"
 
 # History
 
