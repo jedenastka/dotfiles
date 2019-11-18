@@ -19,4 +19,10 @@ fi
 echo "Hello $USER!"
 echo
 neofetch
-fortune -s 
+fortune -s 2>/dev/null 1>fortune.tmp
+if [ -s "$(cat fortune.tmp)" ]; then
+    cat fortune.tmp
+else
+    fortune
+fi
+rm fortune.tmp
