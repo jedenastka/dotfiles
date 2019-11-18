@@ -98,7 +98,7 @@ setopt prompt_subst
 
 ## zsh-autosuggestions
 . $ZSHDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
-## zsh-syntax-highlighting
-. $ZSHDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ## Code::Stats
 source ~/.zsh.d/zsh-codestats/codestats.zsh
+## zsh-syntax-highlighting
+. $ZSHDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
