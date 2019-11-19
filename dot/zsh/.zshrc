@@ -68,12 +68,6 @@ setopt hist_ignore_space
 # Save immediatelly after entering command.
 setopt share_history
 
-# Keybindings
-
-## C-left and C-right to move cursor by word.
-bindkey "\e[1;5D" backward-word
-bindkey "\e[1;5C" forward-word
-
 # Command editor
 
 autoload -U edit-command-line
@@ -96,9 +90,17 @@ setopt prompt_subst
 
 # Extensions
 
-## zsh-autosuggestions
+## Autosuggestions
 . $ZSHDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 ## Code::Stats
 source ~/.zsh.d/zsh-codestats/codestats.zsh
-## zsh-syntax-highlighting
+
+# Keybindings
+
+## C-left and C-right to move cursor by word.
+bindkey "\e[1;5D" backward-word
+bindkey "\e[1;5C" forward-word
+bindkey "^ " forward-word
+
+# Syntax highlighting 
 . $ZSHDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
