@@ -58,6 +58,12 @@ for file in ${localFiles[*]}; do
 done
 
 echo "Done!"
+
+echo "Configuring DOTDIR variable..."
+
+echo "export DOTDIR=$PWD" | tee -a "$installPath/.shellrc-local"
+
+echo "Done!"
 }
 
 dotUninstall() {

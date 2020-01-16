@@ -10,3 +10,6 @@
 [submodule "dot/vim/.vim/bundle/code-stats-vim"]
 	path = dot/vim/.vim/bundle/code-stats-vim
 	url = https://gitlab.com/code-stats/code-stats-vim.git
+[submodule "scripts/pfetch"]
+	path = scripts/pfetch
+	url = https://github.com/dylanaraps/pfetch
