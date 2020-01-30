@@ -11,3 +11,8 @@ cl() {
     cd "$1"
     ls
 }
+
+updoot() {
+    echo "%" >> $HOME/updooted
+    < /tmp/fortune >> $HOME/updooted
+}
