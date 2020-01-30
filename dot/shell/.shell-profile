@@ -21,13 +21,6 @@ if [ -f ~/.shell-profile-local ]; then
     source ~/.shell-profile-local
 fi
 
-echo "Hello $USER!"
-echo
-$DOTDIR/scripts/pfetch/pfetch
-fortune -s 2>/dev/null 1>fortune.tmp
-if [ -s "$(cat fortune.tmp)" ]; then
-    cat fortune.tmp
-else
-    fortune
-fi
-rm fortune.tmp
+pfetch
+fortune 2> /dev/null 1> /tmp/fortune
+cat /tmp/fortune
