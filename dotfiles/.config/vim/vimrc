@@ -12,7 +12,7 @@ if filereadable(expand("$XDG_CONFIG_HOME/vim/vimrc.local"))
 endif
 
 " Colorscheme
-colorscheme dracula
+"colorscheme dracula
 
 " Indention
 " Indent automatically
