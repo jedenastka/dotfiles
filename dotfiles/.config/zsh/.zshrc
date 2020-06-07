@@ -60,7 +60,7 @@ bindkey "\e[1;5D" backward-word
 bindkey "\e[1;5C" forward-word
 bindkey "^ " forward-word
 # Ctrl+Backspace to remove word
-bindkey "\e[1;7F" backward-kill-word
+bindkey "^H" backward-kill-word
 
 # Plugins
 # Code::Stats
