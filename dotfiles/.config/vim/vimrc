@@ -11,12 +11,8 @@ if filereadable(expand("$XDG_CONFIG_HOME/vim/vimrc.local"))
     source $XDG_CONFIG_HOME/vim/vimrc.local
 endif
 
-" Packs
 " Colorscheme
-packadd dracula
 colorscheme dracula
-" Code\::Stats
-packadd codestats
 
 " Indention
 " Indent automatically
