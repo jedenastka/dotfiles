@@ -82,7 +82,7 @@ alias q='exit'
 alias mkd='mkdir'
 
 # XDG
-nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings 
+alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings'
 
 # Other
 
