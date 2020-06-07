@@ -10,3 +10,6 @@
 [submodule "dotfiles/.config/vim/pack/plugins/start/vimdiscord"]
 	path = dotfiles/.config/vim/pack/plugins/start/vimdiscord
 	url = https://github.com/vbe0201/vimdiscord
+[submodule "dotfiles/.config/zsh/plugins/zsh-autosuggestions"]
+	path = dotfiles/.config/zsh/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
