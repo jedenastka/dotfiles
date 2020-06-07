@@ -62,6 +62,9 @@ bindkey "^ " forward-word
 # Ctrl+Backspace to remove word
 bindkey "^H" backward-kill-word
 
+# Load Tetris so I can play it when I'm bored
+autoload -Uz tetriscurses
+
 # Plugins
 # Code::Stats
 source $ZDOTDIR/plugins/codestats/codestats.plugin.zsh
