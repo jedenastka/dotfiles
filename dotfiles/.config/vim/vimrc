@@ -6,6 +6,17 @@ set viewdir=$XDG_DATA_HOME/vim/view
 set viminfo+='1000,n$XDG_DATA_HOME/vim/viminfo
 set runtimepath=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
 
+if filereadable(expand("$XDG_CONFIG_HOME/vim/vimrc.local"))
+    source $XDG_CONFIG_HOME/vim/vimrc.local
+endif
+
+" Packs
+" Colorscheme
+"packadd dracula
+"colorscheme dracula
+" Code\::Stats
+"packadd codestats
+
 " Indention
 " Indent automatically
 set autoindent
