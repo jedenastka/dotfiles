@@ -1,6 +1,3 @@
-[submodule "dotfiles/.config/vim/pack/plugins/start/code-stats-vim"]
-	path = dotfiles/.config/vim/pack/plugins/start/code-stats-vim
-	url = https://gitlab.com/code-stats/code-stats-vim
 [submodule "dotfiles/.config/vim/pack/plugins/start/codestats"]
 	path = dotfiles/.config/vim/pack/plugins/start/codestats
 	url = https://gitlab.com/code-stats/code-stats-vim
