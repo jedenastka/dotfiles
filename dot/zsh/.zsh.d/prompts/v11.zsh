@@ -1,1 +1,0 @@
-PS1=$'$(~/.zsh.d/prompts/v11-script.sh)'
