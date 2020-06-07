@@ -1,0 +1,103 @@
+# Local aliases
+
+[ -e ~/.config/shell/aliases.local ] && source ~/.config/shell/aliases.local
+
+# ls
+
+alias ls='ls --color=auto -F'
+alias l='ls'
+alias la='ls -A'
+alias ll='ls -l'
+alias lla='ls -lA'
+alias l.='ls -d .*'
+
+# vim
+alias v='vim'
+alias sv='sudo vim'
+alias svim='sudo vim'
+alias edit='vim'
+alias sedit='sudo vim'
+
+# aptitude
+
+if ! [ -z "$(command -v aptitude)" ]; then
+    alias apti='aptitude'
+    alias sapti='sudo aptitude'
+    alias aptii='sudo aptitude install'
+    alias aptir='sudo aptitude purge'
+    alias aptis='aptitude search'
+    alias aptish='aptitude show'
+    alias aptiempc='sudo \rm /var/lib/aptitude/pkgstates'
+fi
+
+# sudo
+
+if ! [ -z "$(command -v sudo)" ]; then
+    alias s='sudo'
+    alias sudo='sudo '
+
+    alias poweroff='sudo poweroff'
+    alias reboot='sudo reboot'
+    alias ifconfig='sudo ifconfig'
+fi
+
+# clear
+
+alias cls='clear'
+alias cdls='cd && clear'
+
+# trash
+
+if ! [ -z "$(command -v trash)" ]; then
+    alias frm='\rm'
+    alias rrm='\rm'
+    alias rm='trash'
+    alias lstrash='trash-list'
+    alias emptrash='trash-empty'
+    alias rmtrash='trash-rm'
+    alias restore='restore-trash'
+fi
+
+# cd
+
+alias c='cd'
+alias cd..='cd ..'
+alias c..='cd ..'
+alias ~='cd ~'
+
+# Overriders
+
+alias mkdir='mkdir -p'
+alias pg='less'
+alias wget='wget -c'
+
+# Other shorthands
+
+alias open='xdg-open'
+alias ytdl='youtube-dl'
+alias sctl='systemctl'
+alias py='python3'
+alias chx='chmod +x'
+alias q='exit'
+alias mkd='mkdir'
+
+# Other
+
+alias grep='grep --color=auto'
+alias zreload='source $ZDOTDIR/.zshrc'
+alias extip='curl api.ipify.org'
+alias inxifx='inxi -Fx'
+alias wgetsite='wget --html-extension -r --convert-links --page-                requisites --no-parent'
+alias now='date +"%T"'
+alias nowdate='date +"%d-%m-%Y"'
+alias wttr='curl wttr.in'
+alias net='nmtui'
+alias new='touch'
+alias testnet='ping -c 5 google.pl'
+alias dmtest='dm-tool add-nested-seat --screen 1280x800'
+alias git-clone-program='git clone --depth=1'
+
+# Fun and useless
+
+alias finisshh='ssh'
+alias ddos='ping'

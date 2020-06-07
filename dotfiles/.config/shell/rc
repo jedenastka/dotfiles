@@ -1,0 +1,8 @@
+# Aliases and functions
+
+[ -e ~/.config/shell/aliases ] && source ~/.config/shell/aliases
+[ -e ~/.config/shell/functions ] && source ~/.config/shell/functions
+
+# Local rc
+
+[ -e ~/.config/shell/rc.local ] && source ~/.config/shell/rc.local

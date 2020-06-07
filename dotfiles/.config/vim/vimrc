@@ -1,0 +1,63 @@
+" Make vim work with XDG
+set undodir=$XDG_DATA_HOME/vim/undo
+set directory=$XDG_DATA_HOME/vim/swap
+set backupdir=$XDG_DATA_HOME/vim/backup
+set viewdir=$XDG_DATA_HOME/vim/view
+set viminfo+='1000,n$XDG_DATA_HOME/vim/viminfo
+set runtimepath=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
+
+" Indention
+" Indent automatically
+set autoindent
+" Convert tabs to spaces
+set expandtab
+" When tabbing, round to multiple of shiftwidth
+set shiftround
+set shiftwidth=4
+" Use tabstop spaces when tabbing
+set smarttab
+set tabstop=4
+" Use file-dependent auto indention
+filetype indent on
+
+" Search
+" Highlight results
+set hlsearch
+" Case-insensitive search by default
+set ignorecase
+" Also search for partial matches
+set incsearch
+" Switch to case-sensitive if search has any uppercase letters
+set smartcase
+
+" UI
+" Show cursor position
+set ruler
+" Tab complete is a menu
+set wildmenu
+" Line numbers relative to current position (helps with command-mode commands)
+set number
+set relativenumber
+" Don't beep
+set noerrorbells
+set visualbell
+" Use mouse
+set mouse=a
+" Set pty name to the file edited
+set title
+" Use colors visible on a dark background
+set background=dark
+
+" Misc
+" Use line wrapping
+set wrap
+" Don't break the line in the middle of a word
+set linebreak
+" Make history bigger
+set history=5000
+" Enable syntax highlighting
+syntax enable
+
+" Key mappings
+vnoremap <C-c> "+y
+map <C-v> "+P
