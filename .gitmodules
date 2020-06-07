@@ -1,9 +1,9 @@
-[submodule "dotfiles/.config/vim/pack/plugins/start/codestats"]
-	path = dotfiles/.config/vim/pack/plugins/start/codestats
-	url = https://gitlab.com/code-stats/code-stats-vim
-[submodule "dotfiles/.config/vim/pack/themes/dracula"]
-	path = dotfiles/.config/vim/pack/themes/dracula
-	url = https://github.com/dracula/vim.git
 [submodule "dotfiles/.config/zsh/plugins/codestats"]
 	path = dotfiles/.config/zsh/plugins/codestats
 	url = https://gitlab.com/code-stats/code-stats-zsh
+[submodule "dotfiles/.config/vim/pack/plugins/start/codestats"]
+	path = dotfiles/.config/vim/pack/plugins/start/codestats
+	url = https://gitlab.com/code-stats/code-stats-vim
+[submodule "dotfiles/.config/vim/pack/themes/start/dracula"]
+	path = dotfiles/.config/vim/pack/themes/start/dracula
+	url = https://github.com/dracula/vim.git
