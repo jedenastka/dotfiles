@@ -1,2 +1,3 @@
-dotfiles.old
-dot/vim/.vim/vimrc-local
+conflicts
+dotfiles/.config/zsh/.zcompdump
+*.local

@@ -1,0 +1,3 @@
+# Local logout
+
+[ -e ~/.config/shell/logout.local ] && source ~/.config/shell/logout.local

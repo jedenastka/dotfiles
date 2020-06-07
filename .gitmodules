@@ -1,15 +1,18 @@
-[submodule "dot/zsh/.zsh.d/zsh-autosuggestions"]
-	path = dot/zsh/.zsh.d/zsh-autosuggestions
+[submodule "dotfiles/.config/zsh/plugins/codestats"]
+	path = dotfiles/.config/zsh/plugins/codestats
+	url = https://gitlab.com/code-stats/code-stats-zsh
+[submodule "dotfiles/.config/vim/pack/plugins/start/codestats"]
+	path = dotfiles/.config/vim/pack/plugins/start/codestats
+	url = https://gitlab.com/code-stats/code-stats-vim
+[submodule "dotfiles/.config/vim/pack/themes/start/dracula"]
+	path = dotfiles/.config/vim/pack/themes/start/dracula
+	url = https://github.com/dracula/vim.git
+[submodule "dotfiles/.config/vim/pack/plugins/start/vimdiscord"]
+	path = dotfiles/.config/vim/pack/plugins/start/vimdiscord
+	url = https://github.com/vbe0201/vimdiscord
+[submodule "dotfiles/.config/zsh/plugins/zsh-autosuggestions"]
+	path = dotfiles/.config/zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule "dot/zsh/.zsh.d/zsh-codestats"]
-	path = dot/zsh/.zsh.d/zsh-codestats
-	url = https://github.com/dancek/zsh-codestats
-[submodule "dot/zsh/.zsh.d/zsh-syntax-highlighting"]
-	path = dot/zsh/.zsh.d/zsh-syntax-highlighting
+[submodule "dotfiles/.config/zsh/plugins/zsh-syntax-highlighting"]
+	path = dotfiles/.config/zsh/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
-[submodule "dot/vim/.vim/bundle/code-stats-vim"]
-	path = dot/vim/.vim/bundle/code-stats-vim
-	url = https://gitlab.com/code-stats/code-stats-vim.git
-[submodule "scripts/pfetch"]
-	path = scripts/pfetch
-	url = https://github.com/dylanaraps/pfetch

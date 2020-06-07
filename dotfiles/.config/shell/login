@@ -1,0 +1,7 @@
+# Local login
+
+[ -e ~/.config/shell/login.local ] && source ~/.config/shell/login.local
+
+# Welcome the user
+
+fortune -s
