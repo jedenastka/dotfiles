@@ -7,7 +7,7 @@
 # Set up the prompt
 autoload -Uz promptinit
 promptinit
-prompt adam1
+source "$ZDOTDIR/prompts/simple.prompt.zsh"
 
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
