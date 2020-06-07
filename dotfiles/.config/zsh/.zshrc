@@ -1,13 +1,10 @@
 # Source enviroment variables
-
 [ -e ~/.config/env ] && source ~/.config/env
 
 # Source shell-independent config
-
 [ -e ~/.config/shell/rc ] && source ~/.config/shell/rc
 
 # Set up the prompt
-
 autoload -Uz promptinit
 promptinit
 prompt adam1
@@ -68,3 +65,7 @@ bindkey "\e[1;7F" backward-kill-word
 # Plugins
 # Code::Stats
 source $ZDOTDIR/plugins/codestats/codestats.plugin.zsh
+# Autosuggestions
+source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+# Syntax highlighting
+source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
