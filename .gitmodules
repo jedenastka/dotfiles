@@ -7,3 +7,6 @@
 [submodule "dotfiles/.config/vim/pack/themes/start/dracula"]
 	path = dotfiles/.config/vim/pack/themes/start/dracula
 	url = https://github.com/dracula/vim.git
+[submodule "dotfiles/.config/vim/pack/plugins/start/vimdiscord"]
+	path = dotfiles/.config/vim/pack/plugins/start/vimdiscord
+	url = https://github.com/vbe0201/vimdiscord
