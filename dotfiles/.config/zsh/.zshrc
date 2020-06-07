@@ -1,3 +1,7 @@
+# Source enviroment variables
+
+[ -e ~/.config/env ] && source ~/.config/env
+
 # Source shell-independent config
 
 [ -e ~/.config/shell/rc ] && source ~/.config/shell/rc
@@ -60,3 +64,7 @@ bindkey "\e[1;5C" forward-word
 bindkey "^ " forward-word
 # Ctrl+Backspace to remove word
 bindkey "\e[1;7F" backward-kill-word
+
+# Plugins
+# Code::Stats
+source $ZDOTDIR/plugins/codestats/codestats.plugin.zsh
