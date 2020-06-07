@@ -1,0 +1,41 @@
+#!/bin/sh
+
+target="$HOME"
+scriptDir=$(dirname "$0")
+conflictDir="$scriptDir/conflicts"
+
+printf "Checking for stow... "
+if [ -z "$(command -v stow)" ]; then
+    printf "Stow is missing. Install it and try again."
+    exit
+fi
+printf "OK\n"
+
+printf "Stowing dotfiles... "
+while true; do
+    conflicts=$(stow -d "$scriptDir" -t "$target" -S dotfiles 2>&1 | awk '/\* existing target is/ {print $NF}')
+    if ! [ -z "$conflicts" ]; then
+        printf "Detected conflicts:\n"
+        for file in $conflicts; do
+            printf "$file"
+        done
+        printf "\nDo you want to fix them by moving the files into $conflictDir? [Y/n] \n"
+        read fixConflicts
+        printf "Resolving conflicts... "
+        if [ "$fixConflicts" != "n" ]; then
+            printf "\n"
+            mkdir -p "$conflictDir"
+            for file in $conflicts; do
+                printf "Moving $file... "
+                mv -i "$target/$file" "$conflictDir/$(basename "$file")"
+                printf "OK\n"
+            done
+        else
+            printf "aborted"
+            break
+        fi
+    else
+        printf "OK\n"
+        break
+    fi
+done
