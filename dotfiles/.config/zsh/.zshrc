@@ -14,7 +14,7 @@ bindkey -e
 
 # Set up history
 # I took most options from https://unix.stackexchange.com/questions/273861/unlimited-history-in-zsh
-HISTFILE=$XDG_DATE_HOME/zsh_history
+HISTFILE=$XDG_DATA_HOME/zsh_history
 HISTSIZE=10000000
 SAVEHIST=$HISTSIZE
 # Super-advanced history format
