@@ -7,6 +7,14 @@ niy() {
     exit
 }
 
+checkCommand() {
+    printf "Checking for $1...\n"
+    if [ -z "$(command -v "$1")" ]; then
+        printf "$1 is missing. Install it and try again.\n"
+        exit 1
+    fi
+}
+
 help() {
     cat << EOF
 dotman v2.2.0
@@ -46,12 +54,8 @@ EOF
 
 # install "$source" "$package" "$target" "$conflictDir" "$method" $ask $create
 install() {
-    printf "Checking for stow...\n"
-    if [ -z "$(command -v stow)" ]; then
-        printf "Stow is missing. Install it and try again.\n"
-        exit 1
-    fi
-    
+    checkCommand stow
+
     printf "Stowing dotfiles...\n"
     while true; do
         conflicts=$(stow -d "$1" -t "$3" $5 "$2" 2>&1 | awk '/\* existing target is/ {print $NF}')
@@ -104,8 +108,13 @@ uninstall() {
     stow -d "$source" -t "$target" -D "$package"
 }
 
+# auto "$repo" "$target"
 auto() {
-    niy
+    checkCommand git
+
+    git clone "$1" "$2"
+    
+    install "$1" 'dotfiles' "$HOME" "$1/conflicts" "-S" 1 1
 }
 
 # update "$localRepo" $update $modules $restow
@@ -129,7 +138,7 @@ case "$action" in
         ;;
     install)
         source="$scriptDir"
-        package="dotfiles"
+        package='dotfiles'
         target="$HOME"
         conflictDir="$scriptDir/conflicts"
         method='-S'
@@ -190,6 +199,9 @@ case "$action" in
         uninstall "$source" "$package" "$target"
         ;;
     auto)
+        repo="https://gitlab.com/grzesiek11/dotfiles"
+        target="$HOME/.dotfiles"
+
         while getopts ':r:t:' opt; do
             case "${opt}" in
                 r)
@@ -204,7 +216,7 @@ case "$action" in
             esac
         done
 
-        auto
+        auto "$repo" "$target"
         ;;
     update)
         localRepo="$scriptDir"
