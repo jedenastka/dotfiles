@@ -1,41 +1,252 @@
 #!/bin/sh
 
-target="$HOME"
 scriptDir=$(dirname "$0")
-conflictDir="$scriptDir/conflicts"
 
-printf "Checking for stow... "
-if [ -z "$(command -v stow)" ]; then
-    printf "Stow is missing. Install it and try again."
+niy() {
+    printf "Not implemented (yet)\n"
     exit
-fi
-printf "OK\n"
+}
 
-printf "Stowing dotfiles... "
-while true; do
-    conflicts=$(stow -d "$scriptDir" -t "$target" -S dotfiles 2>&1 | awk '/\* existing target is/ {print $NF}')
-    if ! [ -z "$conflicts" ]; then
-        printf "Detected conflicts:\n"
-        for file in $conflicts; do
-            printf "$file"
-        done
-        printf "\nDo you want to fix them by moving the files into $conflictDir? [Y/n] \n"
-        read fixConflicts
-        printf "Resolving conflicts... "
-        if [ "$fixConflicts" != "n" ]; then
-            printf "\n"
-            mkdir -p "$conflictDir"
+checkCommand() {
+    printf "Checking for $1...\n"
+    if [ -z "$(command -v "$1")" ]; then
+        printf "$1 is missing. Install it and try again.\n"
+        exit 1
+    fi
+}
+
+help() {
+    cat << EOF
+dotman v2.2.0
+Manages dotfiles.
+Created by Grzesiek11. Licensed under The Unlicense.
+
+Usage: dotman action [OPTIONS]
+Actions:
+    help            Show this help message.
+    install         Stows dotfiles from source to target.
+        Options:
+            -s [...]    Source. Defaults to scripts directory.
+            -p [...]    Package. Defaults to 'dotfiles'.
+            -t [...]    Target. Defaults to \$HOME.
+            -c [...]    Conflict directory. Defaults to directory 'conflicts' in scripts directory.
+            -r          Restow instead of stowing.
+            -y          Don't ask about conflicts.
+            -f          Don't create files and directories.
+    uninstall       Unstows dotfiles from target.
+        Options:
+            -s [...]    Source. Defaults to scripts directory.
+            -t [...]    Target. Defaults to \$HOME.
+
+    auto            Get dotfiles from Git repository with submodules, then stow it.
+        Options:
+            -r [...]    Git repository used.
+            -t [...]    Target. Defaults to \$HOME
+    update          Updates the Git repository and its modules, then restows dotfiles.
+        Options:
+            -l [...]    Local repository location. Defaults to scripts directory.
+            -u          Skip updating.
+            -m          Skip modules.
+            -r          Skip restowing.
+EOF
+[ -z $1 ] && exit 1 || exit 0
+}
+
+# install "$source" "$package" "$target" "$conflictDir" "$method" $ask $create
+install() {
+    checkCommand stow
+
+    printf "Stowing dotfiles...\n"
+    while true; do
+        conflicts=$(stow -d "$1" -t "$3" $5 "$2" 2>&1 | awk '/\* existing target is/ {print $NF}')
+        if ! [ -z "$conflicts" ]; then
+            printf "Detected conflicts:\n"
             for file in $conflicts; do
-                printf "Moving $file... "
-                mv -i "$target/$file" "$conflictDir/$(basename "$file")"
-                printf "OK\n"
+                printf "$file\n"
             done
+            printf "Do you want to fix them by moving the files into $4? [Y/n] "
+            [ $6 = 1 ] && read fixConflicts || fixConflicts='y'
+            printf "Resolving conflicts...\n"
+            if [ "$fixConflicts" != "n" ]; then
+                printf "\n"
+                mkdir -p "$conflictDir"
+                for file in $conflicts; do
+                    printf "Moving $file...\n"
+                    mv -i "$target/$file" "$conflictDir/$(basename "$file")"
+                done
+            else
+                break
+            fi
         else
-            printf "aborted"
             break
         fi
-    else
-        printf "OK\n"
-        break
+    done
+
+    # TODO: Move directories that user arleady has
+    if [ $7 = 1 ]; then
+        export XDG_CONFIG_HOME=$HOME/.config
+        export XDG_CACHE_HOME=$HOME/.cache
+        export XDG_DATA_HOME=$HOME/.local/share
+
+        printf "Creating directories...\n"
+        mkdir -p "$XDG_DATA_HOME"/vim/{undo,swap,backup}
+        mkdir -p "$XDG_CACHE_HOME"/less
+        mkdir -p "$XDG_CONFIG_HOME"/android
+        mkdir -p "$XDG_DATA_HOME"/cargo
+        mkdir -p "$XDG_DATA_HOME"/gnupg
+        mkdir -p "$XDG_CONFIG_HOME"/java
+        mkdir -p "$XDG_CONFIG_HOME"/less
+        mkdir -p "$XDG_CONFIG_HOME"/npm
+        mkdir -p "$XDG_DATA_HOME"/rustup
+        mkdir -p "$XDG_DATA_HOME"/gradle
     fi
-done
+}
+
+# uninstall "$source" "$package" "$target"
+uninstall() {
+    printf "Unstowing dotfiles...\n"
+    stow -d "$source" -t "$target" -D "$package"
+}
+
+# auto "$repo" "$target"
+auto() {
+    checkCommand git
+
+    git clone "$1" "$2"
+    
+    install "$1" 'dotfiles' "$HOME" "$1/conflicts" "-S" 1 1
+}
+
+# update "$localRepo" $update $modules $restow
+update() {
+    cd "$1"
+    printf "Updating local repository...\n"
+    [ $2 = 1 ] && git pull >/dev/null
+    printf "Updating submodules...\n"
+    [ $3 = 1 ] && git submodule update --recursive --remote >/dev/null
+    printf "Restowing dotfiles...\n"
+    # TODO: Smarter option passing to install.
+    [ $4 = 1 ] && install "$1" 'dotfiles' "$HOME" "$1/conflicts" '-R' 1 1
+}
+
+action="$1"
+! [ -z $2 ] && shift 1
+
+case "$action" in
+    help)
+        help
+        ;;
+    install)
+        source="$scriptDir"
+        package='dotfiles'
+        target="$HOME"
+        conflictDir="$scriptDir/conflicts"
+        method='-S'
+        ask=1
+        create=1
+
+        while getopts ':s:p:t:c:ryf' opt; do
+            case "${opt}" in
+                s)
+                    source="${OPTARG}"
+                    ;;
+                p)
+                    package="${OPTARG}"
+                    ;;
+                t)
+                    target="${OPTARG}"
+                    ;;
+                c)
+                    conflictDir="${OPTARG}"
+                    ;;
+                r)
+                    method='-R'
+                    ;;
+                y)
+                    ask=0
+                    ;;
+                f)
+                    create=0
+                    ;;
+                *)
+                    help
+                    exit
+                    ;;
+            esac
+        done
+
+        install "$source" "$package" "$target" "$conflictDir" "$method" $ask $create
+        ;;
+    uninstall)
+        source="$scriptDir"
+        package='dotfiles'
+        target="$HOME"
+
+        while getopts ':s:t:' opt; do
+            case "${opt}" in
+                s)
+                    source="${OPTARG}"
+                    ;;
+                t)
+                    target="${OPTARG}"
+                    ;;
+                *)
+                    help
+                    ;;
+            esac
+        done
+
+        uninstall "$source" "$package" "$target"
+        ;;
+    auto)
+        repo="https://gitlab.com/grzesiek11/dotfiles"
+        target="$HOME/.dotfiles"
+
+        while getopts ':r:t:' opt; do
+            case "${opt}" in
+                r)
+                    repo="${OPTARG}"
+                    ;;
+                t)
+                    target="${OPTARG}"
+                    ;;
+                *)
+                    help
+                    ;;
+            esac
+        done
+
+        auto "$repo" "$target"
+        ;;
+    update)
+        localRepo="$scriptDir"
+        update=1
+        modules=1
+        restow=1
+
+        while getopts ':d:umr' opt; do
+            case "${opt}" in
+                l)
+                    localRepo="${OPTARG}"
+                    ;;
+                u)
+                    update=0
+                    ;;
+                m)
+                    modules=0
+                    ;;
+                r)
+                    restow=0
+                    ;;
+                *)
+                    help
+                    ;;
+            esac
+        done
+
+        update "$localRepo" $update $modules $restow
+        ;;
+    *)
+        help 1
+        ;;
+esac
