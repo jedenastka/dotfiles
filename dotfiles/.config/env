@@ -1,20 +1,18 @@
 # If it's already included, don't do anything
-
 ! [ -z $ENV_INCLUDED ] && return
-
 ENV_INCLUDED=1
 
 # Local enviroment
-
 [ -e ~/.config/env.local ] && source ~/.config/env.local
 
-# Various things
+# Path
+export PATH=$PATH:~/.local/bin
 
+# Various things
 export EDITOR=vim
 export WINEPREFIX=~/.wine_bottles/wine32
 
 # XDG stuff
-
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
