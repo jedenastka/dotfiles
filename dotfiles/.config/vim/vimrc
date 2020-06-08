@@ -12,7 +12,9 @@ if filereadable(expand("$XDG_CONFIG_HOME/vim/vimrc.local"))
 endif
 
 " Colorscheme
-"colorscheme dracula
+packadd! dracula
+syntax enable
+colorscheme dracula
 
 " Indention
 " Indent automatically
@@ -62,9 +64,6 @@ set wrap
 " Don't break the line in the middle of a word
 set linebreak
 " Make history bigger
-set history=5000
-" Enable syntax highlighting
-syntax enable
 
 " Key mappings
 vnoremap <C-c> "+y
