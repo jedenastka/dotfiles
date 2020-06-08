@@ -1,5 +1,34 @@
 #!/bin/sh
 
+help() {
+    cat << EOF
+dotman v2.2.0
+Manages dotfiles.
+Created by Grzesiek11. Licensed under The Unlicense.
+
+Usage: dotman action [OPTIONS]
+Actions:
+    help        Show this help message.
+    install     Stows dotfiles from source to target.
+        Options:
+            -s  Source. Defaults to scripts directory.
+            -t  Target. Defaults to \$HOME.
+            -r  Restow instead of stowing.
+    uninstall   Unstows dotfiles from target.
+        Options:
+            -s  Source. Defaults to scripts directory.
+            -t  Target. Defaults to \$HOME.
+    auto        Get dotfiles from Git repository with submodules, then stow it.
+        Options:
+            -r  Git repository used.
+    update      Updates the Git repository and its modules, then restows dotfiles.
+        Options:
+            -u  Skip updating.
+            -m  Skip modules.
+            -r  Skip restowing.
+EOF
+}
+
 target="$HOME"
 scriptDir=$(dirname "$0")
 conflictDir="$scriptDir/conflicts"
