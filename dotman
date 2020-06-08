@@ -1,5 +1,10 @@
 #!/bin/sh
 
+niy() {
+    printf "Not implemented (yet)\n"
+    exit
+}
+
 help() {
     cat << EOF
 dotman v2.2.0
@@ -21,13 +26,115 @@ Actions:
     auto        Get dotfiles from Git repository with submodules, then stow it.
         Options:
             -r  Git repository used.
+            -t  Target. Defaults to \$HOME
     update      Updates the Git repository and its modules, then restows dotfiles.
         Options:
             -u  Skip updating.
             -m  Skip modules.
             -r  Skip restowing.
 EOF
+exit
 }
+
+install() {
+    niy
+}
+
+uninstall() {
+    niy
+}
+
+auto() {
+    niy
+}
+
+update() {
+    niy
+}
+
+action="$1"
+! [ -z $2 ] && shift 1
+
+case "$action" in
+    help)
+        help
+        ;;
+    install)
+        while getopts ':s:t:r' opt; do
+            case "${opt}" in
+                s)
+                    source="${OPTARG}"
+                    ;;
+                t)
+                    target="${OPTARG}"
+                    ;;
+                r)
+                    restow=1
+                    ;;
+                *)
+                    help
+                    exit
+                    ;;
+            esac
+        done
+        install
+        ;;
+    uninstall)
+        while getopts ':s:t:' opt; do
+            case "${opt}" in
+                s)
+                    source="${OPTARG}"
+                    ;;
+                t)
+                    target="${OPTARG}"
+                    ;;
+                *)
+                    help
+                    ;;
+            esac
+        done
+        uninstall
+        ;;
+    auto)
+        while getopts ':r:t:' opt; do
+            case "${opt}" in
+                r)
+                    repo="${OPTARG}"
+                    ;;
+                t)
+                    target="${OPTARG}"
+                    ;;
+                *)
+                    help
+                    ;;
+            esac
+        done
+        auto
+        ;;
+    update)
+        while getopts ':umr' opt; do
+            case "${opt}" in
+                u)
+                    skipUpdate=1
+                    ;;
+                m)
+                    skipModules=1
+                    ;;
+                r)
+                    skipRestow=1
+                    ;;
+                *)
+                    help
+                    ;;
+            esac
+        done
+        update
+        ;;
+    *)
+        help
+        ;;
+esac
+exit
 
 target="$HOME"
 scriptDir=$(dirname "$0")
