@@ -39,3 +39,18 @@ while true; do
         break
     fi
 done
+
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+
+mkdir -p "$XDG_DATA_HOME"/vim/{undo,swap,backup}
+mkdir -p "$XDG_CACHE_HOME"/less
+mkdir -p "$XDG_CONFIG_HOME"/android
+mkdir -p "$XDG_DATA_HOME"/cargo
+mkdir -p "$XDG_DATA_HOME"/gnupg
+mkdir -p "$XDG_CONFIG_HOME"/java
+mkdir -p "$XDG_CONFIG_HOME"/less
+mkdir -p "$XDG_CONFIG_HOME"/npm
+mkdir -p "$XDG_DATA_HOME"/rustup
+mkdir -p "$XDG_DATA_HOME"/gradle
