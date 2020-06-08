@@ -16,3 +16,15 @@
 [submodule "dotfiles/.config/zsh/plugins/zsh-syntax-highlighting"]
 	path = dotfiles/.config/zsh/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "dotfiles/.config/vim/pack/plugins/start/airline"]
+	path = dotfiles/.config/vim/pack/plugins/start/airline
+	url = https://github.com/vim-airline/vim-airline
+[submodule "dotfiles/.config/vim/pack/plugins/start/nerdtree"]
+	path = dotfiles/.config/vim/pack/plugins/start/nerdtree
+	url = https://github.com/scrooloose/nerdtree
+[submodule "dotfiles/.config/vim/pack/plugins/start/nerdtree-git"]
+	path = dotfiles/.config/vim/pack/plugins/start/nerdtree-git
+	url = https://github.com/Xuyuanp/nerdtree-git-plugin
+[submodule "dotfiles/.config/vim/pack/plugins/start/fugitive"]
+	path = dotfiles/.config/vim/pack/plugins/start/fugitive
+	url = https://github.com/tpope/vim-fugitive
