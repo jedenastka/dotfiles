@@ -15,29 +15,30 @@ Created by Grzesiek11. Licensed under The Unlicense.
 
 Usage: dotman action [OPTIONS]
 Actions:
-    help        Show this help message.
-    install     Stows dotfiles from source to target.
+    help            Show this help message.
+    install         Stows dotfiles from source to target.
         Options:
-            -s  Source. Defaults to scripts directory.
-            -p  Package. Defaults to 'dotfiles'.
-            -t  Target. Defaults to \$HOME.
-            -c  Conflict directory. Defaults to directory 'conflicts' in scripts directory.
-            -r  Restow instead of stowing.
-            -y  Don't ask about conflicts.
-            -f  Don't create files and directories.
-    uninstall   Unstows dotfiles from target.
+            -s [...]    Source. Defaults to scripts directory.
+            -p [...]    Package. Defaults to 'dotfiles'.
+            -t [...]    Target. Defaults to \$HOME.
+            -c [...]    Conflict directory. Defaults to directory 'conflicts' in scripts directory.
+            -r          Restow instead of stowing.
+            -y          Don't ask about conflicts.
+            -f          Don't create files and directories.
+    uninstall       Unstows dotfiles from target.
         Options:
-            -s  Source. Defaults to scripts directory.
-            -t  Target. Defaults to \$HOME.
-    auto        Get dotfiles from Git repository with submodules, then stow it.
+            -s [...]    Source. Defaults to scripts directory.
+            -t [...]    Target. Defaults to \$HOME.
+
+    auto            Get dotfiles from Git repository with submodules, then stow it.
         Options:
-            -r  Git repository used.
-            -t  Target. Defaults to \$HOME
-    update      Updates the Git repository and its modules, then restows dotfiles.
+            -r [...]    Git repository used.
+            -t [...]    Target. Defaults to \$HOME
+    update          Updates the Git repository and its modules, then restows dotfiles.
         Options:
-            -u  Skip updating.
-            -m  Skip modules.
-            -r  Skip restowing.
+            -u          Skip updating.
+            -m          Skip modules.
+            -r          Skip restowing.
 EOF
 [ $1 = 1 ] && exit 0 || exit 1
 }
