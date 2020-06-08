@@ -46,38 +46,34 @@ EOF
 
 # install "$source" "$package" "$target" "$conflictDir" "$method" $ask $create
 install() {
-    printf "Checking for stow... "
+    printf "Checking for stow...\n"
     if [ -z "$(command -v stow)" ]; then
-        printf "\nStow is missing. Install it and try again."
-        exit
+        printf "Stow is missing. Install it and try again.\n"
+        exit 1
     fi
-    printf "OK\n"
-
-    printf "Stowing dotfiles... "
+    
+    printf "Stowing dotfiles...\n"
     while true; do
         conflicts=$(stow -d "$1" -t "$3" $5 "$2" 2>&1 | awk '/\* existing target is/ {print $NF}')
         if ! [ -z "$conflicts" ]; then
             printf "Detected conflicts:\n"
             for file in $conflicts; do
-                printf "$file "
+                printf "$file\n"
             done
-            printf "\nDo you want to fix them by moving the files into $4? [Y/n] \n"
+            printf "Do you want to fix them by moving the files into $4? [Y/n] "
             [ $6 = 1 ] && read fixConflicts || fixConflicts='y'
-            printf "Resolving conflicts... "
+            printf "Resolving conflicts...\n"
             if [ "$fixConflicts" != "n" ]; then
                 printf "\n"
                 mkdir -p "$conflictDir"
                 for file in $conflicts; do
-                    printf "Moving $file... "
+                    printf "Moving $file...\n"
                     mv -i "$target/$file" "$conflictDir/$(basename "$file")"
-                    printf "OK\n"
                 done
             else
-                printf "aborted"
                 break
             fi
         else
-            printf "OK\n"
             break
         fi
     done
@@ -88,6 +84,7 @@ install() {
         export XDG_CACHE_HOME=$HOME/.cache
         export XDG_DATA_HOME=$HOME/.local/share
 
+        printf "Creating directories...\n"
         mkdir -p "$XDG_DATA_HOME"/vim/{undo,swap,backup}
         mkdir -p "$XDG_CACHE_HOME"/less
         mkdir -p "$XDG_CONFIG_HOME"/android
@@ -112,8 +109,11 @@ auto() {
 # update "$localRepo" $update $modules $restow
 update() {
     cd "$1"
-    [ $2 = 1 ] && git pull
-    [ $3 = 1 ] && git submodule update --recursive --remote
+    printf "Updating local repository...\n"
+    [ $2 = 1 ] && git pull >/dev/null
+    printf "Updating submodules...\n"
+    [ $3 = 1 ] && git submodule update --recursive --remote >/dev/null
+    printf "Restowing dotfiles...\n"
     # TODO: Smarter option passing to install.
     [ $4 = 1 ] && install "$1" 'dotfiles' "$HOME" "$1/conflicts" '-R' 1 1
 }
