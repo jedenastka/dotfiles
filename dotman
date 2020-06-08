@@ -36,6 +36,7 @@ Actions:
             -t [...]    Target. Defaults to \$HOME
     update          Updates the Git repository and its modules, then restows dotfiles.
         Options:
+            -l [...]    Local repository location. Defaults to scripts directory.
             -u          Skip updating.
             -m          Skip modules.
             -r          Skip restowing.
@@ -108,8 +109,13 @@ auto() {
     niy
 }
 
+# update "$localRepo" $update $modules $restow
 update() {
-    niy
+    cd "$1"
+    [ $2 = 1 ] && git pull
+    [ $3 = 1 ] && git submodules update --recursive --remote
+    # TODO: Smarter option passing to install.
+    [ $4 = 1 ] && install "$1" 'dotfiles' "$1/conflicts" '-R' 1 1
 }
 
 action="$1"
@@ -157,6 +163,7 @@ case "$action" in
                     ;;
             esac
         done
+
         install "$source" "$package" "$target" "$conflictDir" "$method" $ask $create
         ;;
     uninstall)
@@ -173,6 +180,7 @@ case "$action" in
                     ;;
             esac
         done
+
         uninstall
         ;;
     auto)
@@ -189,26 +197,36 @@ case "$action" in
                     ;;
             esac
         done
+
         auto
         ;;
     update)
-        while getopts ':umr' opt; do
+        localRepo="$scriptDir"
+        update=1
+        modules=1
+        restow=1
+
+        while getopts ':d:umr' opt; do
             case "${opt}" in
+                l)
+                    localRepo="${OPTARG}"
+                    ;;
                 u)
-                    skipUpdate=1
+                    update=0
                     ;;
                 m)
-                    skipModules=1
+                    modules=0
                     ;;
                 r)
-                    skipRestow=1
+                    restow=0
                     ;;
                 *)
                     help
                     ;;
             esac
         done
-        update
+
+        update "$localRepo" $update $modules $restow
         ;;
     *)
         help 1
