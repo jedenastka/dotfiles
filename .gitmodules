@@ -28,3 +28,6 @@
 [submodule "dotfiles/.config/vim/pack/plugins/start/fugitive"]
 	path = dotfiles/.config/vim/pack/plugins/start/fugitive
 	url = https://github.com/tpope/vim-fugitive
+[submodule "dotfiles/.config/vim/pack/plugins/start/vimsence"]
+	path = dotfiles/.config/vim/pack/plugins/start/vimsence
+	url = https://github.com/hugolgst/vimsence
