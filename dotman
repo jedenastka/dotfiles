@@ -98,8 +98,10 @@ install() {
     fi
 }
 
+# uninstall "$source" "$package" "$target"
 uninstall() {
-    niy
+    printf "Unstowing dotfiles...\n"
+    stow -d "$source" -t "$target" -D "$package"
 }
 
 auto() {
@@ -167,6 +169,10 @@ case "$action" in
         install "$source" "$package" "$target" "$conflictDir" "$method" $ask $create
         ;;
     uninstall)
+        source="$scriptDir"
+        package='dotfiles'
+        target="$HOME"
+
         while getopts ':s:t:' opt; do
             case "${opt}" in
                 s)
@@ -181,7 +187,7 @@ case "$action" in
             esac
         done
 
-        uninstall
+        uninstall "$source" "$package" "$target"
         ;;
     auto)
         while getopts ':r:t:' opt; do
