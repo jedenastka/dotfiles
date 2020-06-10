@@ -68,3 +68,6 @@ set linebreak
 " Key mappings
 vnoremap <C-c> "+y
 map <C-v> "+P
+
+" Filetype specific
+autocmd FileType make setlocal noexpandtab
