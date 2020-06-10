@@ -31,3 +31,6 @@
 [submodule "dotfiles/.config/vim/pack/plugins/start/vimsence"]
 	path = dotfiles/.config/vim/pack/plugins/start/vimsence
 	url = https://github.com/hugolgst/vimsence
+[submodule "dotfiles/.config/vim/pack/plugins/start/smarthome"]
+	path = dotfiles/.config/vim/pack/plugins/start/smarthome
+	url = https://github.com/vim-scripts/Smart-Home-Key

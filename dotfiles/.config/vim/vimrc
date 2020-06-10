@@ -68,6 +68,7 @@ set linebreak
 " Key mappings
 vnoremap <C-c> "+y
 map <C-v> "+P
+map <home> :SmartHomeKey<CR>
 
 " Filetype specific
 autocmd FileType make setlocal noexpandtab
