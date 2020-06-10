@@ -69,6 +69,7 @@ set linebreak
 vnoremap <C-c> "+y
 map <C-v> "+P
 map <home> :SmartHomeKey<CR>
+map <C-t> :NERDTreeToggle<CR>
 
 " Filetype specific
 autocmd FileType make setlocal noexpandtab
