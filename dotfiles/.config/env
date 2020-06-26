@@ -6,7 +6,7 @@ ENV_INCLUDED=1
 [ -e ~/.config/env.local ] && source ~/.config/env.local
 
 # Path
-export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/.local/bin:~/.local/share/npm/bin
 
 # Various things
 export EDITOR=vim
