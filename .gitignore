@@ -2,3 +2,4 @@ conflicts
 dotfiles/.config/zsh/.zcompdump
 *.local
 !.local
+bookmarks.xml*
