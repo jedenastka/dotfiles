@@ -50,6 +50,9 @@ setopt autocd
 # Allow for code execution in prompts
 setopt prompt_subst
 
+# Enable comments
+setopt interactivecomments
+
 # Keybinds
 # Command editor
 autoload -U edit-command-line
