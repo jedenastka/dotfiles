@@ -1,0 +1,63 @@
+# sudo
+alias sudo='sudo '
+alias poweroff='sudo poweroff'
+alias reboot='sudo reboot'
+
+# Shorthands
+alias mkd='mkdir'
+alias md='mkdir'
+alias s='sudo'
+alias rmd='rmdir'
+alias cls='clear'
+alias pg='less'
+alias chx='chmod +x'
+alias q='exit'
+alias cdls='cd && clear'
+[ -n "$(command -v xdg-open)" ] && alias open='xdg-open'
+[ -n "$(command -v youtube-dl)" ] && alias ytdl='youtube-dl'
+[ -n "$(command -v systemctl)" ] && alias sctl='systemctl'
+[ -n "$(command -v batcat)" ] && alias bat='batcat'
+[ -n "$(command -v bat)" ] && alias bap='bat -pp'
+if [ -n "$(command -v python3)" ]; then
+    alias py='python3'
+elif [ -n "$(command -v python)" ]; then
+    alias py='python'
+fi
+
+# Definitions
+[ -n "$(command -v curl)" ] && alias myip='curl api.ipify.org'
+
+# Overrides
+[ -n "$(command -v wget)" ] && alias wget="wget --hsts-file='$XDG_CACHE_HOME/wget/hsts' -c"
+alias grep='grep --color=auto'
+
+# Copy & Paste
+[ -n "$(command -v xclip)" ] && {
+    alias c='xclip -selection clipboard'
+    alias p='xclip -o'
+}
+
+# trash-cli
+[ -n "$(command -v trash)" ] && {
+    alias del='trash'
+    alias rm="printf ''\''rm'\'' is temporarily disabled due to an exploit.\n'"
+}
+
+# ls
+alias ls='ls --color=auto -F'
+alias l='ls'
+alias la='ls -A'
+alias ll='ls -l'
+alias lla='ls -lA'
+
+# aptitude
+alias apti='aptitude'
+alias sapti='sudo aptitude'
+
+# vim
+alias v='vim'
+alias sv='sudo vim'
+alias svim='sudo vim'
+
+# mc
+[ -f "$(command -v mc)" ] && alias mc='source /usr/lib/mc/mc-wrapper.sh'

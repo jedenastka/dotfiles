@@ -1,0 +1,119 @@
+#!/bin/sh
+
+# Internal functions
+
+# link PACKAGE...
+link() {
+    stow_command() {
+        stow --dir="$dot_dir/pkgs" --target="$target_dir" --stow "$@"
+    }
+
+    stow_command "$@" 2>&1 | grep -Po '  \* (existing target is neither a link nor a directory|existing target is not owned by stow): \K.+' | while IFS= read -r line; do
+        dir="$backup_dir/$(dirname "$line")"
+        mkdir -p "$dir"
+        mv "$target_dir/$line" "$dir"
+    done
+
+    stow_command "$@" # >/dev/null 2>&1
+}
+
+# unlink PACKAGE...
+unlink() {
+    stow --dir="$dot_dir/pkgs" --target="$target_dir" --delete "$@" >/dev/null 2>&1
+}
+
+# relink PACKAGE...
+relink() {
+    unlink "$@"
+    link "$@"
+}
+
+# Interface functions
+
+# help EXIT_CODE
+help() {
+    cat <<EOF
+Syntax: $0 [OPTION]... [SUBCOMMAND]
+Local managment of synced dotfiles.
+
+Options:
+  -h            show this help message
+  -V            show version information
+  -v            be verbose
+
+Subcommands:
+  link          installs packages
+  unlink        uninstalls packages
+  relink        reinstalls packages
+  update        updates the repository
+  installer     interactive first-time setup
+EOF
+
+    exit "$1"
+}
+
+# version
+version() {
+    cat <<EOF
+dotman v3.0
+Created by Grzesiek11 (https://grzesiek11.stary.pc.pl)
+Licensed under ISC: https://opensource.org/licenses/ISC
+
+https://gitlab.com/grzesiek11/dotfiles
+EOF
+}
+
+# notimplemented
+notimplemented() {
+    printf 'Sorry, this feature isn'\''t yet available.\n'
+    exit 0
+}
+
+dot_dir="$(dirname "$(readlink -f "$0")")"
+target_dir="$HOME"
+backup_dir="$dot_dir/backup"
+
+verbose=0
+
+while getopts 'hVv' opt; do
+    case "$opt" in
+        h)
+            help 0
+            ;;
+        V)
+            version
+            ;;
+        v)
+            verbose=1
+            ;;
+        *)
+            help 1
+            ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+subcommand="$1"
+shift 1
+
+case "$subcommand" in
+    link)
+        link "$@"
+        ;;
+    unlink)
+        unlink "$@"
+        ;;
+    relink)
+        relink "$@"
+        ;;
+    update)
+        notimplemented
+        ;;
+    installer)
+        notimplemented
+        ;;
+    *)
+        help 1
+        ;;
+esac

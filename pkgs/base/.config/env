@@ -1,0 +1,40 @@
+# Load local enviroment variables
+[ -f "$HOME/.config/env.local" ] && source "$HOME/.config/env.local"
+
+# XDG directories
+[ -z "$XDG_DATA_HOME" ] && export XDG_DATA_HOME="$HOME/.local/share"
+[ -z "$XDG_CACHE_HOME" ] && export XDG_CACHE_HOME="$HOME/.cache"
+[ -z "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME="$HOME/.config"
+## vim
+export VIMINIT="source ${XDG_CONFIG_HOME:-$HOME/.config}/vim/vimrc"
+## sdkman
+export SDKMAN_DIR="$XDG_DATA_HOME/sdkman"
+## rustup and cargo
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+## WakaTime
+export WAKATIME_HOME="$XDG_CONFIG_HOME/wakatime"
+## Wine
+export WINEPREFIX="$XDG_CONFIG_HOME/.local/share/wineprefixes/default64"
+## Electrum
+export ELECTRUMDIR="$XDG_DATA_HOME/electrum"
+## gradle
+export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
+## less
+export LESSKEY="$XDG_CONFIG_HOME/less/lesskey"
+export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
+## pylint
+export PYLINTHOME="$XDG_CACHE_HOME/pylint"
+## npm
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+## wget
+export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+
+# PATH
+export PATH="$PATH:$HOME/.local/bin:/sbin:/usr/sbin"
+
+# Make Java use the GTK theme
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel $_JAVA_OPTIONS"
+
+# Set vim as default editor
+export EDITOR='vim'

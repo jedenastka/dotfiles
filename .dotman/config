@@ -1,0 +1,2 @@
+repo_http='https://gitlab.com/grzesiek11/dotfiles.git'
+repo_ssh='git@gitlab.com:grzesiek11/dotfiles.git'

@@ -1,0 +1,15 @@
+description='Base package'
+default=1
+always_honor='.config
+.local/share
+.cache
+.config/wakatime
+.local/share/wineprefixes
+.cache/less'
+never_honor='.config/zsh
+.config/vim
+.config/htop
+.config/mc
+.config/npm
+.config/shell
+.config/wget'

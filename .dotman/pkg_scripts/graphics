@@ -1,0 +1,7 @@
+description='Graphical sessions and programs'
+if [ -z "$XDG_CURRENT_DESKTOP" ]; then
+    default=0
+else
+    default=1
+fi
+directories='.config/VSCodium/User'

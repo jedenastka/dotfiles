@@ -1,0 +1,4 @@
+backup/
+.dotman/todo.txt
+.dotman/config.local
+.dotman/installed_pkgs

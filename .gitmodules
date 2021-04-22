@@ -1,0 +1,6 @@
+[submodule "pkgs/base/.config/zsh/plugins/zsh-syntax-highlighting"]
+	path = pkgs/base/.config/zsh/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "pkgs/base/.config/zsh/plugins/zsh-autosuggestions"]
+	path = pkgs/base/.config/zsh/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
