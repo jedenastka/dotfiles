@@ -2,30 +2,52 @@
 
 # Internal functions
 
-# link PACKAGE...
+# backup_move PATH
+backup_move() {
+    dir="$backup_dir/$(dirname "$1")"
+    mkdir -p "$dir"
+    # Use cp instead of mv to allow merging directories. Could use -l option to create hardlinks and give cp the mv speed, but this might be unsafe.
+    cp -ra "$target_dir/$1" "$dir"
+    rm -rfv "${target_dir:?}/$1"
+}
+
+# link PACKAGE
 link() {
     stow_command() {
-        stow --dir="$dot_dir/pkgs" --target="$target_dir" --stow "$@"
+        # Don't use --dotfiles, even though it's cool - it's broken for directories (https://github.com/aspiers/stow/issues/33).
+        stow --dir="$dot_dir/pkgs" --target="$target_dir" --stow "$1"
     }
 
-    stow_command "$@" 2>&1 | grep -Po '  \* (existing target is neither a link nor a directory|existing target is not owned by stow): \K.+' | while IFS= read -r line; do
-        dir="$backup_dir/$(dirname "$line")"
-        mkdir -p "$dir"
-        mv "$target_dir/$line" "$dir"
-    done
+    # Resolve conflicts with existing dotfiles by moving them to another directory.
+    conflicts="$(stow_command "$1" 2>&1 | grep -Po '^  \* (existing target is neither a link nor a directory|existing target is not owned by stow): \K.+')"
+    [ -n "$conflicts" ] && {
+        echo "$conflicts" | while IFS= read -r path; do
+            backup_move "$path"
+        done
 
-    stow_command "$@" # >/dev/null 2>&1
+        stow_command "$1"
+    }
+
+    return 0
 }
 
-# unlink PACKAGE...
+# unlink PACKAGE
 unlink() {
-    stow --dir="$dot_dir/pkgs" --target="$target_dir" --delete "$@" >/dev/null 2>&1
+    stow --dir="$dot_dir/pkgs" --target="$target_dir" --delete "$1" >/dev/null 2>&1
 }
 
-# relink PACKAGE...
-relink() {
-    unlink "$@"
-    link "$@"
+# package_info PACKAGE
+package_info() {
+    # shellcheck source=.dotman/pkg_scripts/base
+    if [ -f "$dot_dir/.dotman/pkg_scripts/$1" ]; then
+        eval "$(. "$dot_dir/.dotman/pkg_scripts/$1";
+                echo pkg_description=\""$description"\";
+                echo pkg_default=\""$default"\";
+                echo pkg_always_honor=\""$always_honor"\";
+                echo pkg_never_honor=\""$never_honor"\")"
+    else
+        return 1
+    fi
 }
 
 # Interface functions
@@ -63,15 +85,68 @@ https://gitlab.com/grzesiek11/dotfiles
 EOF
 }
 
-# notimplemented
-notimplemented() {
-    printf 'Sorry, this feature isn'\''t yet available.\n'
-    exit 0
+# not_implemented
+not_implemented() {
+    printf 'Sorry, this feature isn'\''t yet available.\n' && exit 0
+}
+
+sub_link() {
+    for package in "$@"; do
+        [ "$verbose" = 1 ] && printf 'Linking %s...' "$package"
+
+        package_info "$package" || { [ "$verbose" = 1 ] && printf ' getting package information failed.\n'; break; }
+
+        # shellcheck disable=SC2154
+        echo "$pkg_always_honor" | while IFS= read -r directory; do
+            mkdir -p "$target_dir/$directory"
+        done
+
+        # shellcheck disable=SC2154
+        echo "$pkg_never_honor" | while IFS= read -r directory; do
+            [ -d "$directory" ] && backup_move "$directory"
+        done
+
+        link "$package" || { [ "$verbose" = 1 ] && printf ' linking failed.\n'; } && { [ $verbose = 1 ] && printf ' done.\n'; }
+    done
+}
+
+sub_unlink() {
+    for package in "$@"; do
+        [ "$verbose" = 1 ] && printf 'Unlinking %s...' "$package"
+
+        package_info "$package" || { [ "$verbose" = 1 ] && printf ' getting package information failed.\n'; break; }
+
+        unlink "$package" || { [ "$verbose" = 1 ] && printf ' unlinking failed.\n'; break; }
+
+        # shellcheck disable=SC2154
+        echo "$pkg_always_honor" | while IFS= read -r directory; do
+            rm -d "$target_dir/$directory" 2>/dev/null
+        done
+
+        [ "$verbose" = 1 ] && printf ' done.\n'
+    done
+}
+
+sub_relink() {
+    for package in "$@"; do
+        sub_unlink "$package" 
+        sub_link "$package"
+    done
+}
+
+sub_update() {
+    not_implemented
+}
+
+sub_installer() {
+    not_implemented
 }
 
 dot_dir="$(dirname "$(readlink -f "$0")")"
-target_dir="$HOME"
-backup_dir="$dot_dir/backup"
+[ -f "$dot_dir/.dotman/config" ] && . "$dot_dir/.dotman/config"
+[ -f "$dot_dir/.dotman/config.local" ] && . "$dot_dir/.dotman/config.local"
+[ -z "$target_dir" ] && target_dir="$HOME"
+[ -z "$backup_dir" ] && backup_dir="$dot_dir/backup"
 
 verbose=0
 
@@ -99,19 +174,19 @@ shift 1
 
 case "$subcommand" in
     link)
-        link "$@"
+        sub_link "$@"
         ;;
     unlink)
-        unlink "$@"
+        sub_unlink "$@"
         ;;
     relink)
-        relink "$@"
+        sub_relink "$@"
         ;;
     update)
-        notimplemented
+        sub_update "$@"
         ;;
     installer)
-        notimplemented
+        sub_installer "$@"
         ;;
     *)
         help 1
