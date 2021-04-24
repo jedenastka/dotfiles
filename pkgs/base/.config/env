@@ -40,4 +40,4 @@ export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswi
 export EDITOR='vim'
 
 # If a program can use portals, let it use them
-GTK_USE_PORTAL=1
+export GTK_USE_PORTAL=1
