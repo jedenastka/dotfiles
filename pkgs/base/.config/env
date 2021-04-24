@@ -31,7 +31,7 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 
 # PATH
-export PATH="$PATH:$HOME/.local/bin:/sbin:/usr/sbin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/.local/share/npm/bin:/sbin:/usr/sbin"
 
 # Make Java use the GTK theme
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel $_JAVA_OPTIONS"
