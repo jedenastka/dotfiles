@@ -20,15 +20,15 @@ link() {
 
     # Resolve conflicts with existing dotfiles by moving them to another directory.
     conflicts="$(stow_command "$1" 2>&1 | grep -Po '^  \* (existing target is neither a link nor a directory|existing target is not owned by stow): \K.+')"
-    [ -n "$conflicts" ] && {
+    if [ -n "$conflicts" ]; then
         echo "$conflicts" | while IFS= read -r path; do
-            backup_move "$path"
+            backup_move "$path" || return 1
         done
 
-        stow_command "$1"
-    }
-
-    return 0
+        stow_command "$1" && return 0 || return 1
+    else
+        return 0
+    fi
 }
 
 # unlink PACKAGE
@@ -45,6 +45,7 @@ package_info() {
                 echo pkg_default=\""$default"\";
                 echo pkg_always_honor=\""$always_honor"\";
                 echo pkg_never_honor=\""$never_honor"\")"
+        return 0
     else
         return 1
     fi
@@ -77,7 +78,7 @@ EOF
 # version
 version() {
     cat <<EOF
-dotman v3.0
+dotman v3.2
 Created by Grzesiek11 (https://grzesiek11.stary.pc.pl)
 Licensed under ISC: https://opensource.org/licenses/ISC
 
@@ -87,14 +88,32 @@ EOF
 
 # not_implemented
 not_implemented() {
-    printf 'Sorry, this feature isn'\''t yet available.\n' && exit 0
+    printf 'Sorry, this feature isn'\''t yet available.\n'
+    
+    exit 0
 }
 
-sub_link() {
-    for package in "$@"; do
-        [ "$verbose" = 1 ] && printf 'Linking %s...' "$package"
+# action INIT_MSG SUCCESS_MSG FAIL_MSG COMMAND...
+action() {
+    init_msg="$1"
+    success_msg="$2"
+    fail_msg="$3"
+    shift 3
+    
+    [ "$verbose" = 1 ] && printf '%b' "$init_msg"
 
-        package_info "$package" || { [ "$verbose" = 1 ] && printf ' getting package information failed.\n'; break; }
+    out="$("$@" 2>&1)" || { error=1; [ "$verbose" = 1 ] && printf '%b' "$fail_msg"; return 1; } && { [ "$verbose" = 1 ] && printf '%b' "$success_msg"; }
+
+    [ "$verbose" = 1 ] && [ -n "$out" ] && echo "$out"
+    return 0
+}
+
+# sub_link
+sub_link() {
+    error=0
+
+    for package in "$@"; do
+        action "Linking $package..." '' ' getting package information failed.\n' package_info "$package" || continue
 
         # shellcheck disable=SC2154
         echo "$pkg_always_honor" | while IFS= read -r directory; do
@@ -106,38 +125,54 @@ sub_link() {
             [ -d "$directory" ] && backup_move "$directory"
         done
 
-        link "$package" || { [ "$verbose" = 1 ] && printf ' linking failed.\n'; } && { [ $verbose = 1 ] && printf ' done.\n'; }
+        action '' ' done.\n' ' linking failed.\n' link "$package"
     done
+
+    return $error
 }
 
+# sub_unlink
 sub_unlink() {
+    error=0
+
     for package in "$@"; do
-        [ "$verbose" = 1 ] && printf 'Unlinking %s...' "$package"
+        action "Unlinking $package..." '' ' getting package information failed.\n' package_info "$package" || continue
 
-        package_info "$package" || { [ "$verbose" = 1 ] && printf ' getting package information failed.\n'; break; }
-
-        unlink "$package" || { [ "$verbose" = 1 ] && printf ' unlinking failed.\n'; break; }
+        action '' '' ' unlinking failed.\n' unlink "$package" || continue
 
         # shellcheck disable=SC2154
         echo "$pkg_always_honor" | while IFS= read -r directory; do
             rm -d "$target_dir/$directory" 2>/dev/null
         done
 
-        [ "$verbose" = 1 ] && printf ' done.\n'
+        printf ' done.\n'
     done
+
+    return $error
 }
 
+# sub_relink
 sub_relink() {
+    error=0
+    
     for package in "$@"; do
-        sub_unlink "$package" 
-        sub_link "$package"
+        action '' '' '' sub_unlink "$package" || continue
+        action '' '' '' sub_link "$package"
     done
+
+    return $error
 }
 
+# sub_update
 sub_update() {
-    not_implemented
+    cd "$dot_dir" || return 1
+    action 'Updating the repository...' ' done.\n' ' failed.\n' git pull || return 1
+    action 'Updating submodules...' ' done.\n' ' failed.\n' git submodule update || return 1
+
+    return 0
 }
 
+# sub_installer
 sub_installer() {
     not_implemented
 }
@@ -175,18 +210,23 @@ shift 1
 case "$subcommand" in
     link)
         sub_link "$@"
+        exit
         ;;
     unlink)
         sub_unlink "$@"
+        exit
         ;;
     relink)
         sub_relink "$@"
+        exit
         ;;
     update)
         sub_update "$@"
+        exit
         ;;
     installer)
         sub_installer "$@"
+        exit
         ;;
     *)
         help 1
