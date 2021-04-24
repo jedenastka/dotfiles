@@ -38,3 +38,6 @@ export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswi
 
 # Set vim as default editor
 export EDITOR='vim'
+
+# If a program can use portals, let it use them
+GTK_USE_PORTAL=1
