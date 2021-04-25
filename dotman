@@ -8,7 +8,7 @@ backup_move() {
     mkdir -p "$dir"
     # Use cp instead of mv to allow merging directories. Could use -l option to create hardlinks and give cp the mv speed, but this might be unsafe.
     cp -ra "$target_dir/$1" "$dir"
-    rm -rfv "${target_dir:?}/$1"
+    rm -rf "${target_dir:?}/$1"
 }
 
 # link PACKAGE
@@ -78,7 +78,7 @@ EOF
 # version
 version() {
     cat <<EOF
-dotman v3.2
+dotman v3.2.1
 Created by Grzesiek11 (https://grzesiek11.stary.pc.pl)
 Licensed under ISC: https://opensource.org/licenses/ISC
 
@@ -102,10 +102,15 @@ action() {
     
     [ "$verbose" = 1 ] && printf '%b' "$init_msg"
 
-    out="$("$@" 2>&1)" || { error=1; [ "$verbose" = 1 ] && printf '%b' "$fail_msg"; return 1; } && { [ "$verbose" = 1 ] && printf '%b' "$success_msg"; }
+    if "$@" >/dev/null 2>&1; then
+        [ "$verbose" = 1 ] && printf '%b' "$success_msg"
+    else
+        error=1; [ "$verbose" = 1 ] && printf '%b' "$fail_msg"
+        return 1
+    fi
 
-    [ "$verbose" = 1 ] && [ -n "$out" ] && echo "$out"
-    return 0
+    # TODO: Fix this
+    #[ "$verbose" = 1 ] && [ -n "$out" ] && echo "$out"
 }
 
 # sub_link
@@ -113,8 +118,8 @@ sub_link() {
     error=0
 
     for package in "$@"; do
-        action "Linking $package..." '' ' getting package information failed.\n' package_info "$package" || continue
-
+        action "Linking $package..." 'a' ' getting package information failed.\n' package_info "$package" || continue
+        
         # shellcheck disable=SC2154
         echo "$pkg_always_honor" | while IFS= read -r directory; do
             mkdir -p "$target_dir/$directory"
@@ -205,6 +210,7 @@ done
 shift $((OPTIND-1))
 
 subcommand="$1"
+# TODO: Breaks if no subcommand
 shift 1
 
 case "$subcommand" in
