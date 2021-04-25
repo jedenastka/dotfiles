@@ -1,10 +1,3 @@
-# Load enviroment variables
-if [ -n "$XDG_CONFIG_HOME" ]; then
-    source "$XDG_CONFIG_HOME/env"
-else
-    source "$HOME/.config/env"
-fi
-
 # Load aliases and functions
 source "$XDG_CONFIG_HOME/shell/aliases"
 source "$XDG_CONFIG_HOME/shell/functions"
@@ -16,13 +9,7 @@ eval "$(dircolors -b)"
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Set up the prompt
-#autoload -Uz promptinit
-#promptinit
-#prompt adam1
 source "$ZDOTDIR/prompts/simple.prompt.zsh"
-
-# emacs keybindings
-bindkey -e
 
 # History
 ## One bilion of saved lines is certainly enough
@@ -71,6 +58,8 @@ setopt interactivecomments
 setopt correctall
 
 # Keybinds
+# emacs keybindings
+bindkey -e
 # Ctrl+E to open the command in editor
 autoload -U edit-command-line
 zle -N edit-command-line
@@ -82,6 +71,9 @@ bindkey '^ ' forward-word
 # Ctrl+(Backspace|Delete) to remove word
 bindkey '^H' backward-kill-word
 bindkey '^[[3;5~' kill-word
+# Home and End on some terminals (ex. Termux)
+bindkey '^[[F' end-of-line
+bindkey '^[[H' beginning-of-line
 
 # Load Tetris
 autoload -Uz tetriscurses
