@@ -1,0 +1,6 @@
+description='Termux - Linux enviroment on Android'
+if [ -z "$TERMUX_VERSION" ]; then
+    default=0
+else
+    default=1
+fi
