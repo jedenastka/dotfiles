@@ -1,3 +1,3 @@
-description='Only for pecet'
+description='Machine specific - pecet'
 default=0
-directories='.config/autostart-scripts'
+pkg_always_honor='.config/autostart-scripts'

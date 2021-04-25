@@ -1,11 +1,13 @@
 description='Base package'
 default=1
-always_honor='.config
-.local/share
-.cache
-.config/wakatime
+always_honor='.local/share
+.local/share/zsh
 .local/share/wineprefixes
-.cache/less'
+.config
+.config/wakatime
+.cache
+.cache/less
+.cache/zsh'
 never_honor='.config/zsh
 .config/vim
 .config/htop

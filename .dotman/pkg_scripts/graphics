@@ -4,4 +4,3 @@ if [ -z "$XDG_CURRENT_DESKTOP" ]; then
 else
     default=1
 fi
-directories='.config/VSCodium/User'
