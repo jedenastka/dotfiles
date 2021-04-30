@@ -2,7 +2,7 @@
 # /home/grzesiek11/.nvidia-settings-rc
 #
 # Configuration file for nvidia-settings - the NVIDIA X Server Settings utility
-# Generated on Fri Apr  9 11:33:16 2021
+# Generated on Mon Apr 26 12:05:16 2021
 #
 
 # ConfigProperties:
@@ -31,9 +31,19 @@ Timer = PowerMizer_Monitor_(GPU_0),Yes,1000
 0/FSAAAppEnhanced=0
 0/ShowGraphicsVisualIndicator=0
 0/XVideoSyncToDisplayID=DVI-D-0
+[DPY:DVI-I-0]/RedBrightness=0.000000
+[DPY:DVI-I-0]/GreenBrightness=0.000000
+[DPY:DVI-I-0]/BlueBrightness=0.000000
+[DPY:DVI-I-0]/RedContrast=0.000000
+[DPY:DVI-I-0]/GreenContrast=0.000000
+[DPY:DVI-I-0]/BlueContrast=0.000000
+[DPY:DVI-I-0]/RedGamma=1.000000
+[DPY:DVI-I-0]/GreenGamma=1.000000
+[DPY:DVI-I-0]/BlueGamma=1.000000
 [DPY:DVI-I-0]/Dithering=0
 [DPY:DVI-I-0]/DitheringMode=0
 [DPY:DVI-I-0]/DitheringDepth=0
+[DPY:DVI-I-0]/DigitalVibrance=0
 [DPY:DVI-I-0]/SynchronousPaletteUpdates=0
 [DPY:DVI-I-1]/Dithering=0
 [DPY:DVI-I-1]/DitheringMode=0
