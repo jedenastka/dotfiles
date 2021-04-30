@@ -71,9 +71,12 @@ bindkey '^ ' forward-word
 # Ctrl+(Backspace|Delete) to remove word
 bindkey '^H' backward-kill-word
 bindkey '^[[3;5~' kill-word
-# Home and End on some terminals (ex. Termux)
+# Home and End on some terminals (Termux, tmux)
 bindkey '^[[F' end-of-line
 bindkey '^[[H' beginning-of-line
+bindkey '^[[4~' end-of-line
+bindkey '^[[1~' beginning-of-line
+bindkey '^[[3~' delete-char
 
 # Load Tetris
 autoload -Uz tetriscurses
