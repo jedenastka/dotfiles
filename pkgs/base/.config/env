@@ -15,7 +15,7 @@ export CARGO_HOME="$XDG_DATA_HOME/cargo"
 ## WakaTime
 export WAKATIME_HOME="$XDG_CONFIG_HOME/wakatime"
 ## Wine
-export WINEPREFIX="$XDG_CONFIG_HOME/.local/share/wineprefixes/default64"
+export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default64"
 ## Electrum
 export ELECTRUMDIR="$XDG_DATA_HOME/electrum"
 ## gradle
