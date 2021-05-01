@@ -2,6 +2,7 @@ description='Base package'
 default=1
 always_honor='.local/share
 .local/share/zsh
+.local/share/bash
 .local/share/wineprefixes
 .config
 .config/wakatime

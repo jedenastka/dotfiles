@@ -17,7 +17,7 @@ source "$XDG_CONFIG_HOME/shell/functions"
 
 # History
 ## Change the location of the history file
-HISTFILE="$XDG_DATA_HOME"/bash/history
+HISTFILE="$XDG_DATA_HOME/bash/history"
 ## One bilion of saved lines is certainly enough
 HISTSIZE=1000000000
 HISTFILESIZE="$HISTSIZE"
