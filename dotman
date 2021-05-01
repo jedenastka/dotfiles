@@ -78,7 +78,7 @@ EOF
 # version
 version() {
     cat <<EOF
-dotman v3.2.1
+dotman v3.2.2
 Created by Grzesiek11 (https://grzesiek11.stary.pc.pl)
 Licensed under ISC: https://opensource.org/licenses/ISC
 
@@ -102,15 +102,14 @@ action() {
     
     [ "$verbose" = 1 ] && printf '%b' "$init_msg"
 
-    if "$@" >/dev/null 2>&1; then
+    if "$@" >/tmp/dotman 2>&1; then
         [ "$verbose" = 1 ] && printf '%b' "$success_msg"
     else
         error=1; [ "$verbose" = 1 ] && printf '%b' "$fail_msg"
         return 1
     fi
 
-    # TODO: Fix this
-    #[ "$verbose" = 1 ] && [ -n "$out" ] && echo "$out"
+    [ "$verbose" = 1 ] && cat /tmp/dotman
 }
 
 # sub_link
@@ -118,7 +117,7 @@ sub_link() {
     error=0
 
     for package in "$@"; do
-        action "Linking $package..." 'a' ' getting package information failed.\n' package_info "$package" || continue
+        action "Linking $package..." '' ' getting package information failed.\n' package_info "$package" || continue
         
         # shellcheck disable=SC2154
         echo "$pkg_always_honor" | while IFS= read -r directory; do
@@ -172,7 +171,7 @@ sub_relink() {
 sub_update() {
     cd "$dot_dir" || return 1
     action 'Updating the repository...' ' done.\n' ' failed.\n' git pull || return 1
-    action 'Updating submodules...' ' done.\n' ' failed.\n' git submodule update || return 1
+    action 'Updating submodules...' ' done.\n' ' failed.\n' git submodule update --depth=1 || return 1
 
     return 0
 }
@@ -210,7 +209,7 @@ done
 shift $((OPTIND-1))
 
 subcommand="$1"
-# TODO: Breaks if no subcommand
+[ -z "$subcommand" ] && help 1
 shift 1
 
 case "$subcommand" in
