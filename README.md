@@ -6,7 +6,7 @@ This repo contains my personal configurations ("dotfiles") that I use everyday o
 
 ### Quick install
 
-**NOTE:** Doesn't work yet! Use manual install.
+**NOTE:** Doesn't work yet! Use [manual install](#manual-install).
 
 #### Recommended (safer) method: download and execute
 
