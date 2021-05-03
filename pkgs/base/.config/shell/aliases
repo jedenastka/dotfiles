@@ -18,6 +18,7 @@ alias cdls='cd && clear'
 [ -n "$(command -v systemctl)" ] && alias sctl='systemctl'
 [ -n "$(command -v batcat)" ] && alias bat='batcat'
 [ -n "$(command -v bat)" ] && alias bap='bat -pp'
+[ -n "$(command -v fdfind)" ] && alias fd='fdfind'
 if [ -n "$(command -v python3)" ]; then
     alias py='python3'
 elif [ -n "$(command -v python)" ]; then
