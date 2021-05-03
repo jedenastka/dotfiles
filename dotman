@@ -90,6 +90,8 @@ Licensed under ISC: https://opensource.org/licenses/ISC
 
 https://gitlab.com/grzesiek11/dotfiles
 EOF
+
+    exit 0
 }
 
 # not_implemented
