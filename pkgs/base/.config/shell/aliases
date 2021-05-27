@@ -61,4 +61,6 @@ alias sv='sudo vim'
 alias svim='sudo vim'
 
 # mc
-[ -f "$(command -v mc)" ] && alias mc='source /usr/lib/mc/mc-wrapper.sh'
+if [ -f "$(command -v mc)" ] && [ -f '/usr/lib/mc/mc-wrapper.sh' ]; then
+    alias mc='source /usr/lib/mc/mc-wrapper.sh'
+fi
